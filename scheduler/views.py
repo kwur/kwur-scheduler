@@ -5,12 +5,12 @@ from datetime import datetime
 from .models import BaseUser, Show, Choice
 from django.core.mail import send_mail
 
-# unknown_dj = BaseUser.objects.get(id=12)
-
 def index(request):
 	return render(request, 'index.html', {})
 
 def submit_show(request):
+	unknown_dj = BaseUser.objects.get(id=12)
+
 	first_name = request.POST.get('first_name')
 	last_name = request.POST.get('last_name')
 	email = request.POST.get('email')
