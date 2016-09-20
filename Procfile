@@ -1,1 +1,1 @@
-web: gunicorn kwur.wsgi --log-file -
+web: waitress-serve --port=$PORT kwur.wsgi:application
