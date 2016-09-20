@@ -1,0 +1,4 @@
+kwurenv
+*.pyc
+staticfiles
+.env

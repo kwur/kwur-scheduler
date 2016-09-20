@@ -1,0 +1,86 @@
+body {
+	background-color: #252424;
+}
+
+.section {
+	margin: auto;
+	width: 450px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+h1 {
+	text-align: center;
+}
+
+form {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	text-align: center;
+}
+
+.form-group {
+	padding-bottom: 40px;
+}
+
+.form-control {
+	width: 400px;
+	margin: auto;
+	background-color: #252424;
+	border: none;
+	border-bottom: 2px solid white;
+	border-radius: 0;
+	color: #F8F8FF;
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+	font-size: 15px;
+	padding: 0;
+}
+
+.select {
+	padding-left: 160px;
+}
+
+label, option, select, p, h3 {
+	color: #F8F8FF;
+	font-family: 'Open Sans', sans-serif;
+}
+
+select {
+	display: block;
+	margin: 0 auto;
+}
+
+label {
+	font-size: 30px;
+}
+
+.small {
+	font-size: 18px;
+	margin-bottom: 5px;
+}
+
+.btn-primary {
+	background-color: white;
+	color: black;
+	padding: 10px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+}
+
+.btn-primary:hover {
+	background-color: #aba9a9;
+}
+
+.header {
+	text-align: center;
+	padding-top: 40px;
+}
+
+.time {
+	margin-left: 25px;
+}
+
+.input-group .form-control {
+	width: 400px;
+}

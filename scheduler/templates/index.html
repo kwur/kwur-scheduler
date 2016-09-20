@@ -1,0 +1,117 @@
+{% load static %}
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!-- bootstrap min.css -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!-- google fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+		<!-- timepicker css -->
+		<link type="text/css" href="{% static 'scheduler/timepicker.less' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'scheduler/style.css' %}">
+		<!-- jquery -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
+		<!-- jquery min -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<!-- bootstrap.min.js -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<!-- timepicker min.js -->
+		<script type="text/javascript" src="{% static 'scheduler/bootstrap-timepicker.js' %}"></script>
+	</head>
+	<body>
+		<div class="header">
+			<img src="{% static 'scheduler/kwur.png' %}" class="pagination-centered">
+		</div>
+		<div class="section">
+			<form data-toggle="validator" action="submit-show/" method="post" role="form">
+				{% csrf_token %}
+				<div class="form-group">
+					<label for="first_name">First Name</label>
+					<input type="text" name="first_name" class="form-control" id="first_name" required>
+				</div>
+				<div class="form-group">
+					<label for="last_name">Last Name</label>
+					<input type="text" name="last_name" class="form-control" id="last_name" required>
+				</div>
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input type="email" name="email" class="form-control" id="email" required>
+				</div>
+				<div class="form-group">
+					<label for="show_name">Show Name</label>
+					<input type="text" name="show_name" class="form-control" id="show_name" required>
+				</div>
+				<div class="form-group">
+					<label for="genre">Genre</label>
+					<input type="text" name="genre" class="form-control" id="genre" required>
+				</div>
+				<div class="form-group">
+					<label for="tagline">Show Tagline</label>
+					<input type="text" name="tagline" class="form-control" id="tagline" required>
+				</div>
+				<div class="form-group">
+					<label for="first_choice_day">First Choice Day</label>
+					<select name='first_choice_day' class="form-control select" id="first_choice_day" required>
+						<option value=0>Sunday</option>
+						<option value=1>Monday</option>
+						<option value=2>Tuesday</option>
+						<option value=3>Wednesday</option>
+						<option value=4>Thursday</option>
+						<option value=5>Friday</option>
+						<option value=6>Saturday</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<div class="input-group bootstrap-timepicker timepicker">
+						<label first="first_choice_time">First Choice Time <div class="small">(e.g. 8:00AM or 10:00PM)</div></label>
+			            <input name='first_choice_time' id="first-choice-timepicker" type="text" class="form-control time" required>
+			        </div>
+				</div>
+				<div class="form-group">
+					<label for="second_choice_day">Second Choice Day <div class="small">(Optional)</div></label>
+					<select name='second_choice_day' class="form-control select" id="second_choice_day">
+						<option value=0>Sunday</option>
+						<option value=1>Monday</option>
+						<option value=2>Tuesday</option>
+						<option value=3>Wednesday</option>
+						<option value=4>Thursday</option>
+						<option value=5>Friday</option>
+						<option value=6>Saturday</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="second_choice_time">Second Choice Time <div class="small">(Optional)</div></label>
+					<input name='second_choice_time' id="second-choice-timepicker" type="text" class="form-control time">
+				</div>
+				<div class="form-group">
+					<label for="third_choice_day">Third Choice Day <div class="small">(Optional)</div></label>
+					<select name='third_choice_day' class="form-control select" id="third_choice_day">
+						<option value=0>Sunday</option>
+						<option value=1>Monday</option>
+						<option value=2>Tuesday</option>
+						<option value=3>Wednesday</option>
+						<option value=4>Thursday</option>
+						<option value=5>Friday</option>
+						<option value=6>Saturday</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="third_choice_time">Third Choice Time <div class="small">(Optional)</div></label>
+					<input name='third_choice_time' id="third-choice-timepicker" type="text" class="form-control time">
+				</div>
+				<div class="form-group">
+					<label for="co_dj">Co-Dj <div class="small">(optional)</div></label>
+					<input type="text" name="co_dj" class="form-control" id="co_dj">
+				</div>
+				<div class="row">
+					<input type="submit" class="btn btn-primary" value="Submit">
+				</div>
+			</form>
+		</div>
+		<script type="text/javascript">
+		    $('#first-choice-timepicker').timepicker();
+		    $('#second-choice-timepicker').timepicker();
+		    $('#third-choice-timepicker').timepicker();
+		</script>
+	</body>
+</html>
