@@ -25,9 +25,20 @@ def submit_show(request):
 	third_choice_time = request.POST.get('third_choice_time')
 	co_dj = request.POST.get('co_dj')
 	
-	first_choice_time = datetime.strptime(first_choice_time, '%I:%M %p').time()
-	second_choice_time = datetime.strptime(second_choice_time, '%I:%M %p').time()
-	third_choice_time = datetime.strptime(third_choice_time, '%I:%M %p').time() 
+	nine_pm = datetime.strptime('09:00 PM', '%I:%M %p').time()
+	eleven_pm = datetime.strptime('11:00 PM', '%I:%M %p').time() 
+
+	if not first_choice_time == "":
+		first_choice_time = datetime.strptime(first_choice_time, '%I:%M %p').time()
+
+	if not second_choice_time == "":
+		second_choice_time = datetime.strptime(second_choice_time, '%I:%M %p').time()
+
+	if not third_choice_time == "":
+		third_choice_time = datetime.strptime(third_choice_time, '%I:%M %p').time() 
+
+	# if all((x == nine_pm or x == eleven_pm) for x in (first_choice_time, second_choice_time, third_choice_time)):
+	# 	return render(request, 'unavailable_times.html', {})
 
 	# Rather than creating a new user, find existing baseuser and save their email
 	dj = BaseUser.objects.filter(first_name__iexact=first_name, last_name__iexact=last_name).first()

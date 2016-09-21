@@ -40,7 +40,7 @@ form {
 	padding-left: 160px;
 }
 
-label, option, select, p, h3 {
+label, option, select, p, h3, a {
 	color: #F8F8FF;
 	font-family: 'Open Sans', sans-serif;
 }
@@ -86,4 +86,18 @@ label {
 
 .input-group .form-control {
 	width: 400px;
+}
+
+a {
+	text-decoration: none; 
+	cursor: pointer;
+}
+
+a:hover {
+	color: #e6e6e6;
+}
+
+.center {
+	text-align:center;
+	padding-bottom: 10px;
 }

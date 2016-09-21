@@ -1,0 +1,11 @@
+{% load static %}
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="{% static 'scheduler/style.css' %}">
+	</head>
+	<div class="header">
+		<img src="{% static 'scheduler/kwur.png' %}">
+		<p class="thanks">8PM and 10PM slots are two-hour slots (8-10PM and 10-Midnight), so you must choose a different time!</p>
+		<a href="{% url 'index' %}">Back to Home Page</a>
+	</div>
+</html>

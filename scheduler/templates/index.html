@@ -23,6 +23,7 @@
 			<img src="{% static 'scheduler/kwur.png' %}" class="pagination-centered">
 		</div>
 		<div class="section">
+			<p class="center">Welcome to the KWUR Scheduler! Some things to remember: all shows are an hour long except for shows from 8-10PM and 10-midnight. Please write in english.</p>
 			<form data-toggle="validator" action="submit-show/" method="post" role="form">
 				{% csrf_token %}
 				<div class="form-group">
@@ -82,7 +83,7 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="second_choice_time">Second Choice Time <div class="small">(Optional)</div></label>
+					<label for="second_choice_time">Second Choice Time <div class="small">(e.g. 8:00AM or 10:00PM)</div> <div class="small">(Optional)</div></label>
 					<input name='second_choice_time' id="second-choice-timepicker" type="text" class="form-control time">
 				</div>
 				<div class="form-group">
@@ -100,7 +101,7 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="third_choice_time">Third Choice Time <div class="small">(Optional)</div></label>
+					<label for="third_choice_time">Third Choice Time <div class="small">(e.g. 8:00AM or 10:00PM)</div> <div class="small">(Optional)</div></label>
 					<input name='third_choice_time' id="third-choice-timepicker" type="text" class="form-control time">
 				</div>
 				<div class="form-group">
@@ -114,8 +115,11 @@
 		</div>
 		<script type="text/javascript">
 		    $('#first-choice-timepicker').timepicker();
+		    $('#first-choice-timepicker').val('');
 		    $('#second-choice-timepicker').timepicker();
+		    $('#second-choice-timepicker').val('');
 		    $('#third-choice-timepicker').timepicker();
+		    $('#third-choice-timepicker').val('');
 		</script>
 	</body>
 </html>
