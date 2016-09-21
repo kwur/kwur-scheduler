@@ -18,6 +18,8 @@ def run():
             i += 1
             dj = show.dj 
 
+            import pdb; pdb.set_trace() 
+            
             choices = Choice.objects.filter(show=show).exclude(not_available=True)
 
             if not choices:
