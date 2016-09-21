@@ -17,10 +17,9 @@ def run():
         for show in shows_without_times:
 
             import pdb; pdb.set_trace() 
-            
+
             i += 1
             dj = show.dj 
-            print "DJ: " + dj 
 
             choices = Choice.objects.filter(show=show).exclude(not_available=True)
 
@@ -37,14 +36,13 @@ def run():
 
             for choice in choices:
                 djs_with_time = Show.objects.filter(day=choice.day, time=choice.time).values_list('dj', flat=True)
-                print "Djs with time ids: " + djs_with_time
                 dj_with_time = BaseUser.objects.filter(id__in=djs_with_time).order_by('credits').first()
 
-                print "Dj with time: " + dj_with_time
+                print "Dj with time: " + str(dj_with_time)
 
                 existing_show = Show.objects.filter(dj=dj_with_time).first()
 
-                print "Existing show: " + existing_show 
+                print "Existing show: " + existing_show
 
                 if existing_show:
                     other_credits = dj_with_time.credits 
@@ -54,7 +52,7 @@ def run():
                         show.time = choice.time 
                         show.save()
 
-                        print 'Other Dj got bumped (A): ' + dj_with_time
+                        print 'Other Dj got bumped (A): ' + str(dj_with_time)
                         existing_show.day = None 
                         existing_show.time = None 
                         existing_show.save()
@@ -72,7 +70,7 @@ def run():
                             show.time = choice.time 
                             show.save()
 
-                            print 'Other Dj got bumped (B): ' + dj_with_time
+                            print 'Other Dj got bumped (B): ' + str(dj_with_time)
                             existing_show.day = None 
                             existing_show.time = None
                             existing_show.save()
