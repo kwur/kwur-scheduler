@@ -40,7 +40,7 @@ def submit_show(request):
 	dj = BaseUser.objects.filter(first_name__iexact=first_name, last_name__iexact=last_name).first()
 
 	if not dj:
-		return HttpResponse("you're not in the database!")
+		return render(request, 'not_in_database.html', {})
 
 	dj.email = email
 	dj.save()
