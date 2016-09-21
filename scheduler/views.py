@@ -137,7 +137,7 @@ def submit_show(request):
 			    'KWUR Scheduler Additional Times', 
 			    'All your choices have been taken! Please enter more here: ',
 			    'webmaster@kwur.com',
-			    ['lu.grace.wy@gmail.com'],
+			    [dj.email],
 			    fail_silently=False 
 			)
 
