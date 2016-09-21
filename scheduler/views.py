@@ -133,14 +133,6 @@ def submit_show(request):
 			other_dj_choices = Choice.objects.filter(day=choice.day, time=choice.time)
 			other_dj_choices.update(not_available=True)
 
-			send_mail(
-			    'KWUR Scheduler Additional Times', 
-			    'All your choices have been taken! Please enter more here: ',
-			    'webmaster@kwur.com',
-			    [dj.email],
-			    fail_silently=False 
-			)
-
 			return render(request, 'thank_for_submissions.html', {})
 	return render(request, 'additional_times.html', {
 		'dj': dj,
