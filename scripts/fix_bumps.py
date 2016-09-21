@@ -42,9 +42,8 @@ def run():
 
                 existing_show = Show.objects.filter(dj=dj_with_time).first()
 
-                print "Existing show: " + existing_show
-
                 if existing_show:
+                    print "Existing show: " + existing_show
                     other_credits = dj_with_time.credits 
 
                     if other_credits < dj.credits:
