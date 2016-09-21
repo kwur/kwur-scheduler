@@ -74,6 +74,8 @@ def run():
                             other_dj_choices = Choice.objects.filter(day=choice.day, time=choice.time)
                             other_dj_choices.update(not_available=True)
 
+                            break 
+
                     else:
                         choice.not_available = True
                         choice.save()
@@ -89,6 +91,7 @@ def run():
                                 [dj.email],
                                 fail_silently=False 
                             )
+                            break 
                 else:
                     print str(show) + ' show successfully saved with day and time'
                     show.day = choice.day
@@ -97,6 +100,8 @@ def run():
 
                     other_dj_choices = Choice.objects.filter(day=choice.day, time=choice.time)
                     other_dj_choices.update(not_available=True)
+
+                    break
 
 
     except Exception, e:
