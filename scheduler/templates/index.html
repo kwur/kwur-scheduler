@@ -120,6 +120,28 @@
 		    $('#second-choice-timepicker').val('');
 		    $('#third-choice-timepicker').timepicker();
 		    $('#third-choice-timepicker').val('');
+
+		    $( "#first-choice-timepicker" ).change(function() {
+		    	var firstChoiceTime = $('#first-choice-timepicker').val();
+		    	if(firstChoiceTime == "9:00 PM" || firstChoiceTime == "11:00 PM") {
+		    		alert("You cannot select this time! Please refer to the info on 2-hr slots above");
+		    	}
+		    });
+
+		    $('#second-choice-timepicker').change(function() {
+		    	var secondChoiceTime = $('#second-choice-timepicker').val();
+		    	if(secondChoiceTime == "9:00 PM" || secondChoiceTime == "11:00 PM") {
+		    		alert("You cannot select this time! Please refer to the info on 2-hr slots above");
+		    	}
+		    });
+
+		    $('#third-choice-timepicker').change(function() {
+		    	var thirdChoiceTime = $('#third-choice-timepicker').val();
+		    	if(thirdChoiceTime == "9:00 PM" || thirdChoiceTime == "11:00 PM") {
+		    		alert("You cannot select this time! Please refer to the info on 2-hr slots above");
+		    	}
+		    })
+
 		</script>
 	</body>
 </html>
