@@ -9,7 +9,7 @@ def index(request):
 	return render(request, 'index.html', {})
 
 def submit_show(request):
-	unknown_dj = BaseUser.objects.get(id=12)
+	unknown_dj = BaseUser.objects.get(id=316)
 
 	first_name = request.POST.get('first_name').strip()
 	last_name = request.POST.get('last_name').strip()
