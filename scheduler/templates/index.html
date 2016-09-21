@@ -23,7 +23,7 @@
 			<img src="{% static 'scheduler/kwur.png' %}" class="pagination-centered">
 		</div>
 		<div class="section">
-			<p class="center">Welcome to the KWUR Scheduler! Some things to remember: all shows are an hour long except for shows from 8-10PM and 10-midnight. Please write in english.</p>
+			<p class="center">Welcome to the KWUR Scheduler! Some things to remember: all shows are an hour long except for shows from 8-10PM and 10-midnight. If you have a co-dj, the dj with the higher number of credits should fill out this form. Please write in english.</p>
 			<form data-toggle="validator" action="submit-show/" method="post" role="form">
 				{% csrf_token %}
 				<div class="form-group">
