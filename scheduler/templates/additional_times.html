@@ -22,10 +22,12 @@
 	<div class="header">
 		<img src="{% static 'scheduler/kwur.png' %}" class="pagination-centered">
 	</div>
-	<form action="/scheduler/submit-additional-times/{{dj.id}}" method="post">
+	<div class="section">
+	<form action="/submit-additional-times/{{dj.id}}" method="post">
 		{% csrf_token %}
 		<input type="hidden" value="{{ dj.id }}" name="dj">
 		<div class="row">
+			<h3>Sorry! None of your choices are available. Please enter in additional times</h3>
 			<h3>Your previous choice times: </h3>
 			{% for choice in choices %}
 				<p>{{ choice.day | get_day_of_week }} - {{ choice.time }}</p>
@@ -34,6 +36,7 @@
 		<div class="form-group">
 			<label for="choice_one_day">Choice Day</label>
 			<select name='choice_one_day' class="form-control select" id="choice_one_day">
+				<option value=""></option>
 				<option value=0>Sunday</option>
 				<option value=1>Monday</option>
 				<option value=2>Tuesday</option>
@@ -52,6 +55,7 @@
 		<div class="form-group">
 			<label>Choice Day</label>
 			<select name='choice_two_day' class="form-control select">
+				<option value=""></option>
 				<option value=0>Sunday</option>
 				<option value=1>Monday</option>
 				<option value=2>Tuesday</option>
@@ -70,6 +74,7 @@
 		<div class="form-group">
 			<label>Choice Day</label>
 			<select name='choice_three_day' class="form-control select">
+				<option value=""></option>
 				<option value=0>Sunday</option>
 				<option value=1>Monday</option>
 				<option value=2>Tuesday</option>
@@ -89,6 +94,7 @@
 			<input type="submit" class="btn btn-primary" value="Submit">
 		</div>
 	</form>
+</div>
 	<script type="text/javascript">
 	    $('#choice-one-timepicker').timepicker();
 	    $('#choice-two-timepicker').timepicker();

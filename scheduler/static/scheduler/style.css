@@ -14,7 +14,6 @@ h1 {
 }
 
 form {
-	padding-top: 40px;
 	padding-bottom: 40px;
 	text-align: center;
 }
@@ -44,6 +43,10 @@ form {
 label, option, select, p, h3 {
 	color: #F8F8FF;
 	font-family: 'Open Sans', sans-serif;
+}
+
+.thanks {
+	padding-top: 100px; 
 }
 
 select {

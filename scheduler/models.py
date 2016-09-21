@@ -43,5 +43,5 @@ class Choice(models.Model):
 	not_available = models.BooleanField(default=False)
 
 	def __str__(self):
-		format = '%H:%M %p'
+		format = '%I:%M %p'
 		return str(self.show) + '-' + DAYS_OF_WEEK[self.day] + '-' + self.time.strftime(format)

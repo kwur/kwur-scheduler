@@ -11,23 +11,23 @@ def index(request):
 def submit_show(request):
 	unknown_dj = BaseUser.objects.get(id=12)
 
-	first_name = request.POST.get('first_name')
-	last_name = request.POST.get('last_name')
-	email = request.POST.get('email')
-	show_name = request.POST.get('show_name')
-	genre = request.POST.get('genre')
-	tagline = request.POST.get('tagline')
-	first_choice_day = int(request.POST.get('first_choice_day'))
+	first_name = request.POST.get('first_name').strip()
+	last_name = request.POST.get('last_name').strip()
+	email = request.POST.get('email').strip()
+	show_name = request.POST.get('show_name').strip()
+	genre = request.POST.get('genre').strip()
+	tagline = request.POST.get('tagline').strip()
+	first_choice_day = request.POST.get('first_choice_day')
 	first_choice_time = request.POST.get('first_choice_time')
-	second_choice_day = int(request.POST.get('second_choice_day'))
+	second_choice_day = request.POST.get('second_choice_day')
 	second_choice_time = request.POST.get('second_choice_time')
-	third_choice_day = int(request.POST.get('third_choice_day'))
+	third_choice_day = request.POST.get('third_choice_day')
 	third_choice_time = request.POST.get('third_choice_time')
 	co_dj = request.POST.get('co_dj')
 	
-	first_choice_time = datetime.strptime(first_choice_time, '%H:%M %p').time()
-	second_choice_time = datetime.strptime(second_choice_time, '%H:%M %p').time()
-	third_choice_time = datetime.strptime(third_choice_time, '%H:%M %p').time() 
+	first_choice_time = datetime.strptime(first_choice_time, '%I:%M %p').time()
+	second_choice_time = datetime.strptime(second_choice_time, '%I:%M %p').time()
+	third_choice_time = datetime.strptime(third_choice_time, '%I:%M %p').time() 
 
 	# Rather than creating a new user, find existing baseuser and save their email
 	dj = BaseUser.objects.filter(first_name__iexact=first_name, last_name__iexact=last_name).first()
@@ -187,19 +187,19 @@ def submit_additional_times(request, dj_id):
 		third_choice_time = request.POST.get('choice_three_time')
 
 		if first_choice_day and first_choice_time: 
-			first_choice_time = datetime.strptime(first_choice_time, '%H:%M %p').time()
+			first_choice_time = datetime.strptime(first_choice_time, '%I:%M %p').time()
 			first_choice = Choice(show=show, choice_num=(choice_num+1), day=first_choice_day, 
 								  time=first_choice_time)
 			first_choice.save()
 
 		if second_choice_day and second_choice_time:
-			second_choice_time = datetime.strptime(second_choice_time, '%H:%M %p').time()
+			second_choice_time = datetime.strptime(second_choice_time, '%I:%M %p').time()
 			second_choice = Choice(show=show, choice_num=(choice_num+2), day=second_choice_day,
 								   time=second_choice_time)
 			second_choice.save()
 
 		if third_choice_day and third_choice_time:
-			third_choice_time = datetime.strptime(third_choice_time, '%H:%M %p').time() 
+			third_choice_time = datetime.strptime(third_choice_time, '%I:%M %p').time() 
 			third_choice = Choice(show=show, choice_num=(choice_num+3), day=third_choice_day,
 								  time=third_choice_time)
 			third_choice.save()

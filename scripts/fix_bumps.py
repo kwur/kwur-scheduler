@@ -23,14 +23,15 @@ def run():
             choices = Choice.objects.filter(show=show).exclude(not_available=True)
 
             if not choices:
-                print 'No available choices, please choose more'
-                # send_mail(
-                #     'KWUR Scheduler Additional Times', 
-                #     'All your choices have been taken! Please enter more here: ',
-                #     'webmaster@kwur.com',
-                #     [dj.email],
-                #     fail_silently=False 
-                # )
+                print 'No available choices for this dj: ' + dj
+                send_mail(
+                    'KWUR Scheduler Additional Times', 
+                    'All your choices have been taken! Please enter more here: ' + 
+                    'kwur.herokuapp.com/additional-times/' + dj.id,
+                    'webmaster@kwur.com',
+                    [dj.email],
+                    fail_silently=False 
+                )
 
             for choice in choices:
                 djs_with_time = Show.objects.filter(day=choice.day, time=choice.time).values_list('dj', flat=True)
@@ -46,6 +47,7 @@ def run():
                         show.time = choice.time 
                         show.save()
 
+                        print 'Other Dj got bumped (A): ' + dj_with_time
                         existing_show.day = None 
                         existing_show.time = None 
                         existing_show.save()
@@ -63,6 +65,7 @@ def run():
                             show.time = choice.time 
                             show.save()
 
+                            print 'Other Dj got bumped (B): ' + dj_with_time
                             existing_show.day = None 
                             existing_show.time = None
                             existing_show.save()
@@ -75,18 +78,18 @@ def run():
                         choice.save()
 
                         if i == choices.count():
-                            print 'last choice, need more choices'
+                            print 'last choice, need more choices for this dj: ' + dj
                             # Send email to user asking for more times
-                            #'http://localhost:8000/scheduler/additional-times/' + dj.id,
-                            # send_mail(
-                            #     'KWUR Scheduler Additional Times', 
-                            #     'All your choices have been taken! Please enter more here: ',
-                            #     'webmaster@kwur.com',
-                            #     [dj.email],
-                            #     fail_silently=False 
-                            # )
+                            send_mail(
+                                'KWUR Scheduler Additional Times', 
+                                'All your choices have been taken! Please enter more here: ' + 
+                                'kwur.herokuapp.com/additional-times/' + dj.id,
+                                'webmaster@kwur.com',
+                                [dj.email],
+                                fail_silently=False 
+                            )
                 else:
-                    print 'show successfully saved with day and time'
+                    print show + ' show successfully saved with day and time'
                     show.day = choice.day
                     show.time = choice.time
                     show.save()
