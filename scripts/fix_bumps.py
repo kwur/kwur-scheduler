@@ -18,8 +18,6 @@ def run():
             i += 1
             dj = show.dj 
 
-            import pdb; pdb.set_trace() 
-            
             choices = Choice.objects.filter(show=show).exclude(not_available=True)
 
             if not choices:
@@ -55,6 +53,7 @@ def run():
                         existing_show.time = None 
                         existing_show.save()
 
+                        # User has taken this time, all other djs with this time choice cannot have it
                         other_dj_choices = Choice.objects.filter(day=choice.day, time=choice.time)
                         other_dj_choices.update(not_available=True)
 
@@ -73,6 +72,7 @@ def run():
                             existing_show.time = None
                             existing_show.save()
 
+                            # User has taken this time, all other djs with this time choice cannot have it
                             other_dj_choices = Choice.objects.filter(day=choice.day, time=choice.time)
                             other_dj_choices.update(not_available=True)
 
@@ -100,6 +100,8 @@ def run():
                     show.time = choice.time
                     show.save()
 
+
+                    # Sets that choice and other choices with that time to not available
                     other_dj_choices = Choice.objects.filter(day=choice.day, time=choice.time)
                     other_dj_choices.update(not_available=True)
 
