@@ -15,16 +15,13 @@ def run():
 
         i = 0
         for show in shows_without_times:
-
-            import pdb; pdb.set_trace() 
-
             i += 1
             dj = show.dj 
 
             choices = Choice.objects.filter(show=show).exclude(not_available=True)
 
             if not choices:
-                print 'No available choices for this dj: ' + dj
+                print 'No available choices for this dj: ' + str(dj)
                 send_mail(
                     'KWUR Scheduler Additional Times', 
                     'All your choices have been taken! Please enter more here: ' + 
@@ -43,7 +40,7 @@ def run():
                 existing_show = Show.objects.filter(dj=dj_with_time).first()
 
                 if existing_show:
-                    print "Existing show: " + existing_show
+                    print "Existing show: " + str(existing_show)
                     other_credits = dj_with_time.credits 
 
                     if other_credits < dj.credits:
@@ -82,7 +79,7 @@ def run():
                         choice.save()
 
                         if i == choices.count():
-                            print 'last choice, need more choices for this dj: ' + dj
+                            print 'last choice, need more choices for this dj: ' + str(dj)
                             # Send email to user asking for more times
                             send_mail(
                                 'KWUR Scheduler Additional Times', 
@@ -93,7 +90,7 @@ def run():
                                 fail_silently=False 
                             )
                 else:
-                    print show + ' show successfully saved with day and time'
+                    print str(show) + ' show successfully saved with day and time'
                     show.day = choice.day
                     show.time = choice.time
                     show.save()
