@@ -15,11 +15,10 @@ def run():
 
         i = 0
         for show in shows_without_times:
-            print show 
 
+            import pdb; pdb.set_trace() 
+            
             i += 1
-            print i 
-            print show.dj 
             dj = show.dj 
             print "DJ: " + dj 
 
