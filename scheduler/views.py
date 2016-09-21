@@ -37,8 +37,10 @@ def submit_show(request):
 	if not third_choice_time == "":
 		third_choice_time = datetime.strptime(third_choice_time, '%I:%M %p').time() 
 
-	# if all((x == nine_pm or x == eleven_pm) for x in (first_choice_time, second_choice_time, third_choice_time)):
-	# 	return render(request, 'unavailable_times.html', {})
+	import pdb; pdb.set_trace() 
+
+	if all((x == nine_pm or x == eleven_pm) for x in (first_choice_time, second_choice_time, third_choice_time)):
+		return render(request, 'unavailable_times.html', {})
 
 	# Rather than creating a new user, find existing baseuser and save their email
 	dj = BaseUser.objects.filter(first_name__iexact=first_name, last_name__iexact=last_name).first()
@@ -143,6 +145,16 @@ def submit_show(request):
 
 			other_dj_choices = Choice.objects.filter(day=choice.day, time=choice.time)
 			other_dj_choices.update(not_available=True)
+
+			#Sends email to DJ who got bumped
+			send_mail(
+                'KWUR Scheduler Additional Times', 
+                'All your choices have been taken! Please enter more here: ' + 
+                'kwur.herokuapp.com/additional-times/' + dj_with_time.id,
+                'webmaster@kwur.com',
+                [dj_with_time.email],
+                fail_silently=False 
+            )
 
 			return render(request, 'thank_for_submissions.html', {})
 	return render(request, 'additional_times.html', {

@@ -19,6 +19,7 @@ def run():
 
             i += 1
             dj = show.dj 
+            print "DJ: " + dj 
 
             choices = Choice.objects.filter(show=show).exclude(not_available=True)
 
@@ -35,9 +36,14 @@ def run():
 
             for choice in choices:
                 djs_with_time = Show.objects.filter(day=choice.day, time=choice.time).values_list('dj', flat=True)
+                print "Djs with time ids: " + djs_with_time
                 dj_with_time = BaseUser.objects.filter(id__in=djs_with_time).order_by('credits').first()
 
+                print "Dj with time: " + dj_with_time
+
                 existing_show = Show.objects.filter(dj=dj_with_time).first()
+
+                print "Existing show: " + existing_show 
 
                 if existing_show:
                     other_credits = dj_with_time.credits 
