@@ -37,10 +37,10 @@ def submit_show(request):
 	if not third_choice_time == "":
 		third_choice_time = datetime.strptime(third_choice_time, '%I:%M %p').time() 
 
-	import pdb; pdb.set_trace() 
+	# import pdb; pdb.set_trace() 
 
-	if all((x == nine_pm or x == eleven_pm) for x in (first_choice_time, second_choice_time, third_choice_time)):
-		return render(request, 'unavailable_times.html', {})
+	# if all((x == nine_pm or x == eleven_pm) for x in (first_choice_time, second_choice_time, third_choice_time)):
+	# 	return render(request, 'unavailable_times.html', {})
 
 	# Rather than creating a new user, find existing baseuser and save their email
 	dj = BaseUser.objects.filter(first_name__iexact=first_name, last_name__iexact=last_name).first()
