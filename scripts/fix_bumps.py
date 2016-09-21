@@ -18,6 +18,7 @@ def run():
             print show 
 
             i += 1
+            print i 
             dj = show.dj 
             print "DJ: " + dj 
 
