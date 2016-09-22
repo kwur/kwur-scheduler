@@ -101,7 +101,8 @@ def submit_show(request):
 
 		existing_show = Show.objects.filter(dj=dj_with_time).first()
 
-		if existing_show: 
+		import pdb; pdb.set_trace()
+		if existing_show and (existing_show.dj != dj): 
 			other_dj_credits = dj_with_time.credits
 
 			if other_dj_credits < dj.credits: 
