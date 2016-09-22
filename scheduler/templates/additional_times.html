@@ -27,9 +27,9 @@
 		{% csrf_token %}
 		<input type="hidden" value="{{ dj.id }}" name="dj">
 		<div class="row">
-			<h3>Sorry! None of your choices are available. Please enter in additional times</h3>
+			<p>Sorry! None of your choices are available. Please enter in additional times</p>
 			{% if choices %}
-				<h3>Your previous choice times: </h3>
+				<p>Your previous choice times: </p>
 				{% for choice in choices %}
 					<p>{{ choice.day | get_day_of_week }} - {{ choice.time }}</p>
 				{% endfor %}
