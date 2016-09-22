@@ -13,10 +13,9 @@ def run():
     try:
         shows_without_times = Show.objects.filter(day=None, time=None)
 
-        i = 0
         for show in shows_without_times:
-            i += 1
             dj = show.dj 
+            print "Show: " + str(show) + " Dj: " + str(dj)
 
             choices = Choice.objects.filter(show=show).exclude(not_available=True)
 
@@ -25,22 +24,22 @@ def run():
                 send_mail(
                     'KWUR Scheduler Additional Times', 
                     'All your choices have been taken! Please enter more here: ' + 
-                    'kwur.herokuapp.com/additional-times/' + dj.id,
+                    'kwur.herokuapp.com/additional-times/' + str(dj.id),
                     'webmaster@kwur.com',
                     [dj.email],
                     fail_silently=False 
                 )
 
+                break 
+            i = 0
             for choice in choices:
+                i += 1
                 djs_with_time = Show.objects.filter(day=choice.day, time=choice.time).values_list('dj', flat=True)
                 dj_with_time = BaseUser.objects.filter(id__in=djs_with_time).order_by('credits').first()
-
-                print "Dj with time: " + str(dj_with_time)
 
                 existing_show = Show.objects.filter(dj=dj_with_time).first()
 
                 if existing_show:
-                    print "Existing show: " + str(existing_show)
                     other_credits = dj_with_time.credits 
 
                     if other_credits < dj.credits:
@@ -83,12 +82,12 @@ def run():
                         choice.save()
 
                         if i == choices.count():
-                            print 'last choice, need more choices for this dj: ' + str(dj)
+                            print 'Last choice, need more choices for this dj: ' + str(dj)
                             # Send email to user asking for more times
                             send_mail(
                                 'KWUR Scheduler Additional Times', 
                                 'All your choices have been taken! Please enter more here: ' + 
-                                'kwur.herokuapp.com/additional-times/' + dj.id,
+                                'kwur.herokuapp.com/additional-times/' + str(dj.id),
                                 'webmaster@kwur.com',
                                 [dj.email],
                                 fail_silently=False 

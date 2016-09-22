@@ -1,4 +1,5 @@
 from django import template
+from scheduler.models import BaseUser, Show, Choice 
 
 register = template.Library()
 
@@ -18,3 +19,4 @@ def get_day_of_week(day):
 	}
 	
 	return DAYS_OF_WEEK.get(day)
+ 

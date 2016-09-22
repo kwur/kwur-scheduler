@@ -99,5 +99,30 @@
 	    $('#choice-one-timepicker').timepicker();
 	    $('#choice-two-timepicker').timepicker();
 	    $('#choice-three-timepicker').timepicker();
+
+	    $('#choice-one-timepicker').val('');
+	    $('#choice-two-timepicker').val('');
+	    $('#choice-three-timepicker').val('');
+
+	     $( "#choice-one-timepicker" ).change(function() {
+	    	var firstChoiceTime = $('#choice-one-timepicker').val();
+	    	if(firstChoiceTime == "9:00 PM" || firstChoiceTime == "11:00 PM") {
+	    		alert("You cannot select this time! Show times are 8-10PM and 10-midnight.");
+	    	}
+	    });
+
+	    $('#choice-two-timepicker').change(function() {
+	    	var secondChoiceTime = $('#choice-two-timepicker').val();
+	    	if(secondChoiceTime == "9:00 PM" || secondChoiceTime == "11:00 PM") {
+	    		alert("You cannot select this time! Show times are 8-10PM and 10-midnight.");
+	    	}
+	    });
+
+	    $('#choice-three-timepicker').change(function() {
+	    	var thirdChoiceTime = $('#choice-three-timepicker').val();
+	    	if(thirdChoiceTime == "9:00 PM" || thirdChoiceTime == "11:00 PM") {
+	    		alert("You cannot select this time! Show times are 8-10PM and 10-midnight.");
+	    	}
+	    });
 	</script>
 </html>

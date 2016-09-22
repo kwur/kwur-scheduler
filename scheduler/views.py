@@ -158,6 +158,8 @@ def additional_times(request, dj_id):
 
 	if show:
 		choices = Choice.objects.filter(show=show)
+	else:
+		choices = []
 
 	return render(request, 'additional_times.html', {
 		'dj': dj, 
