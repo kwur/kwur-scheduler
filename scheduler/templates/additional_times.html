@@ -108,21 +108,24 @@
 
 	     $( "#choice-one-timepicker" ).change(function() {
 	    	var firstChoiceTime = $('#choice-one-timepicker').val();
-	    	if(firstChoiceTime == "9:00 PM" || firstChoiceTime == "11:00 PM") {
+	    	var firstChoiceDay = $('#choice_one_day').val();
+	    	if((firstChoiceDay != 0 && firstChoiceDay != 6) && firstChoiceTime == "9:00 PM" || firstChoiceTime == "11:00 PM") {
 	    		alert("You cannot select this time! Show times are 8-10PM and 10-midnight.");
 	    	}
 	    });
 
 	    $('#choice-two-timepicker').change(function() {
 	    	var secondChoiceTime = $('#choice-two-timepicker').val();
-	    	if(secondChoiceTime == "9:00 PM" || secondChoiceTime == "11:00 PM") {
+	    	var secondChoiceDay = $('#choice_two_day').val();
+	    	if((secondChoiceDay != 0 && secondChoiceDay != 6) && secondChoiceTime == "9:00 PM" || secondChoiceTime == "11:00 PM") {
 	    		alert("You cannot select this time! Show times are 8-10PM and 10-midnight.");
 	    	}
 	    });
 
 	    $('#choice-three-timepicker').change(function() {
 	    	var thirdChoiceTime = $('#choice-three-timepicker').val();
-	    	if(thirdChoiceTime == "9:00 PM" || thirdChoiceTime == "11:00 PM") {
+	    	var thirdChoiceDay = $('#choice_three_day').val();
+	    	if((thirdChoiceDay != 0 && thirdChoiceDay != 6) && thirdChoiceTime == "9:00 PM" || thirdChoiceTime == "11:00 PM") {
 	    		alert("You cannot select this time! Show times are 8-10PM and 10-midnight.");
 	    	}
 	    });

@@ -23,7 +23,7 @@
 			<img src="{% static 'scheduler/kwur.png' %}" class="pagination-centered">
 		</div>
 		<div class="section">
-			<p class="center">Welcome to the KWUR Scheduler! Some things to remember: all shows are an hour long except for shows from 8-10PM and 10-midnight. If you have a co-dj, the dj with the higher number of credits should fill out this form. Please write in english.</p>
+			<p class="center">Welcome to the KWUR Scheduler! Some things to remember: all shows are an hour long except for shows from 8-10PM and 10-midnight Monday-Friday. If you have a co-dj, the dj with the higher number of credits should fill out this form. Please write in english.</p>
 			<form data-toggle="validator" action="submit-show/" method="post" role="form">
 				{% csrf_token %}
 				<div class="form-group">
@@ -123,21 +123,24 @@
 
 		    $( "#first-choice-timepicker" ).change(function() {
 		    	var firstChoiceTime = $('#first-choice-timepicker').val();
-		    	if(firstChoiceTime == "9:00 PM" || firstChoiceTime == "11:00 PM") {
-		    		alert("You cannot select this time! Please refer to the info on 2-hr slots above");
+		    	var firstChoiceDay = $('#first_choice_day').val();
+		    	if((firstChoiceDay != 0 && firstChoiceDay != 6) && firstChoiceTime == "9:00 PM" || firstChoiceTime == "11:00 PM") {
+		    			alert("You cannot select this time! Please refer to the info on 2-hr slots above");
 		    	}
 		    });
 
 		    $('#second-choice-timepicker').change(function() {
 		    	var secondChoiceTime = $('#second-choice-timepicker').val();
-		    	if(secondChoiceTime == "9:00 PM" || secondChoiceTime == "11:00 PM") {
+		    	var secondChoiceDay = $('#second_choice_day').val();
+		    	if((secondChoiceDay != 0 && secondChoiceDay != 6) && secondChoiceTime == "9:00 PM" || secondChoiceTime == "11:00 PM") {
 		    		alert("You cannot select this time! Please refer to the info on 2-hr slots above");
 		    	}
 		    });
 
 		    $('#third-choice-timepicker').change(function() {
 		    	var thirdChoiceTime = $('#third-choice-timepicker').val();
-		    	if(thirdChoiceTime == "9:00 PM" || thirdChoiceTime == "11:00 PM") {
+		    	var thirdChoiceDay = $('#third_choice_day').val();
+		    	if((thirdChoiceDay != 0 && thirdChoiceDay != 6) && thirdChoiceTime == "9:00 PM" || thirdChoiceTime == "11:00 PM") {
 		    		alert("You cannot select this time! Please refer to the info on 2-hr slots above");
 		    	}
 		    });
