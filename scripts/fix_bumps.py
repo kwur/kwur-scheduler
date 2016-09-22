@@ -23,7 +23,7 @@ def run():
                 print 'No available choices for this dj: ' + str(dj)
                 send_mail(
                     'KWUR Scheduler Additional Times', 
-                    'All your choices have been taken! Please enter more here: ' + 
+                    'All of your choices have been taken! Please enter more here: ' + 
                     'kwur.herokuapp.com/additional-times/' + str(dj.id),
                     'webmaster@kwur.com',
                     [dj.email],
@@ -86,7 +86,7 @@ def run():
                             # Send email to user asking for more times
                             send_mail(
                                 'KWUR Scheduler Additional Times', 
-                                'All your choices have been taken! Please enter more here: ' + 
+                                'All of your choices have been taken! Please enter more here: ' + 
                                 'kwur.herokuapp.com/additional-times/' + str(dj.id),
                                 'webmaster@kwur.com',
                                 [dj.email],
