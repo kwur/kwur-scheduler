@@ -23,7 +23,7 @@ class BaseUser(models.Model):
 		return self.first_name + '-' + self.last_name
 
 class Show(models.Model):
-	show_name = models.CharField(max_length=100)
+	show_name = models.CharField(max_length=200)
 	dj = models.ForeignKey(BaseUser)
 	co_dj = models.ForeignKey(BaseUser, null=True, blank=True, related_name='co_dj')
 	genre = models.CharField(max_length=50)
