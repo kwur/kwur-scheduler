@@ -91,10 +91,11 @@ label {
 a {
 	text-decoration: none; 
 	cursor: pointer;
+	color: #a6a6a6;
 }
 
 a:hover {
-	color: #e6e6e6;
+	color: #737373;
 }
 
 .center {

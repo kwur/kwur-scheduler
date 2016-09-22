@@ -147,8 +147,6 @@ def submit_show(request):
 	})
 
 
-def tentative_schedule(request):
-	return HttpResponse('meh')
 
 def additional_times(request, dj_id):
 	dj_id = int(dj_id)
