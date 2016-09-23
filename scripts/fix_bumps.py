@@ -15,7 +15,6 @@ def run():
 
         for show in shows_without_times:
 
-            import pdb; pdb.set_trace()
             dj = show.dj 
             print "Show: " + str(show) + " Dj: " + str(dj)
 
