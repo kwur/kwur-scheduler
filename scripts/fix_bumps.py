@@ -27,7 +27,7 @@ def run():
                     'All of your choices have been taken! Please enter more here: ' + 
                     'kwur.herokuapp.com/additional-times/' + str(dj.id),
                     'webmaster@kwur.com',
-                    [dj.email],
+                    [dj.email, 'webmaster@kwur.com'],
                     fail_silently=False 
                 )
 
@@ -90,7 +90,7 @@ def run():
                                 'All of your choices have been taken! Please enter more here: ' + 
                                 'kwur.herokuapp.com/additional-times/' + str(dj.id),
                                 'webmaster@kwur.com',
-                                [dj.email],
+                                [dj.email, 'webmaster@kwur.com'],
                                 fail_silently=False 
                             )
                             break 
