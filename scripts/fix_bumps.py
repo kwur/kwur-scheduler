@@ -20,7 +20,7 @@ def run():
 
             cristal = BaseUser.objects.get(id=167)
             if dj == cristal:
-                break 
+                continue
 
             choices = Choice.objects.filter(show=show).exclude(not_available=True)
 
