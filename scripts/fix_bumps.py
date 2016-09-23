@@ -18,10 +18,6 @@ def run():
             dj = show.dj 
             print "Show: " + str(show) + " Dj: " + str(dj)
 
-            cristal = BaseUser.objects.get(id=167)
-            if dj == cristal:
-                continue
-
             choices = Choice.objects.filter(show=show).exclude(not_available=True)
 
             if not choices:
