@@ -18,6 +18,10 @@ def run():
             dj = show.dj 
             print "Show: " + str(show) + " Dj: " + str(dj)
 
+            cristal = BaseUser.objects.get(id=167)
+            if dj == cristal:
+                break 
+
             choices = Choice.objects.filter(show=show).exclude(not_available=True)
 
             if not choices:
@@ -31,7 +35,6 @@ def run():
                     fail_silently=False 
                 )
 
-                break 
             i = 0
             for choice in choices:
                 i += 1
@@ -56,6 +59,8 @@ def run():
                         # User has taken this time, all other djs with this time choice cannot have it
                         other_dj_choices = Choice.objects.filter(day=choice.day, time=choice.time)
                         other_dj_choices.update(not_available=True)
+
+                        break 
 
                     elif other_credits == dj.credits:
 
@@ -93,7 +98,6 @@ def run():
                                 [dj.email, 'webmaster@kwur.com'],
                                 fail_silently=False 
                             )
-                            break 
                 else:
                     print str(show) + ' show successfully saved with day and time'
                     show.day = choice.day
