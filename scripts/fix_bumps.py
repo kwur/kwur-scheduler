@@ -14,6 +14,8 @@ def run():
         shows_without_times = Show.objects.filter(day=None, time=None)
 
         for show in shows_without_times:
+
+            import pdb; pdb.set_trace()
             dj = show.dj 
             print "Show: " + str(show) + " Dj: " + str(dj)
 

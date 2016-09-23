@@ -21,10 +21,16 @@ class BaseUserAdmin(ImportExportMixin, admin.ModelAdmin):
     resource_class = BaseUserResource
 
 class ShowAdmin(ImportExportMixin, admin.ModelAdmin):
-	pass
+	
+		class Meta:
+			model = Show 
+			fields = ('id', 'show_name', 'dj', 'co_dj', 'genre', 'tagline', 'day', 'time', 'timestamp')
 
 class ChoiceAdmin(ImportExportMixin, admin.ModelAdmin):
-    pass
+    	
+    	class Meta:
+    		model = Choice
+    		fields = ('id', 'show', 'choice_num', 'day', 'time', 'not_available')
 
 admin.site.register(BaseUser, BaseUserAdmin)
 admin.site.register(Show, ShowAdmin)

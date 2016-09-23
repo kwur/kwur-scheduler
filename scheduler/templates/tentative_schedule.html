@@ -1,0 +1,13 @@
+{% load static %}
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="{% static 'scheduler/style.css' %}">
+	</head>
+	<div class="section">
+		{% for i in days %}
+			<h4>{{ i | get_day_of_week }}</h4>
+			{% for show in shows %}
+			{% endfor %}
+		{% endfor %}
+	</div>
+</html>
