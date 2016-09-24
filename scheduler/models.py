@@ -51,4 +51,4 @@ class Choice(models.Model):
 
 	def __str__(self):
 		format = '%I:%M %p'
-		return str(self.show.show_name) + '-' + DAYS_OF_WEEK[self.day] + '-' + self.time.strftime(format)
+		return self.show.show_name + '-' + str(self.show.dj) '-' + DAYS_OF_WEEK[self.day] + '-' + self.time.strftime(format)
