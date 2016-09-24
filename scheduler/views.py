@@ -207,3 +207,26 @@ def submit_additional_times(request, dj_id):
 
 	else:
 		return redirect('index')
+
+def tentative_schedule(request):
+	shows_dict = {
+		0: [], 
+		1: [],
+		2: [],
+		3: [], 
+		4: [], 
+		5: [], 
+		6: []
+	}
+
+	for i in range(7):
+		for show in Show.objects.filter(day=i).order_by('time'):
+				show_time = show.time 
+				shows_dict[i].append([str(show.dj), show_time.strftime('%I:%M %p')])
+
+	print shows_dict 
+
+	return render(request, 'tentative_schedule.html', {
+			'shows_dict': shows_dict 
+		})
+

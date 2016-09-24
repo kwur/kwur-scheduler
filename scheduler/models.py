@@ -20,7 +20,7 @@ class BaseUser(models.Model):
 	email = models.EmailField(default='', blank=True, null=True)
 
 	def __str__(self):
-		return self.first_name + '-' + self.last_name
+		return self.first_name + ' ' + self.last_name
 
 class Show(models.Model):
 	show_name = models.CharField(max_length=200)
