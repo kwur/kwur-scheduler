@@ -33,7 +33,8 @@ class Show(models.Model):
 	timestamp = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
-		return self.show_name + '-' + str(self.dj)
+		format = '%I:%M %p'
+		return self.show_name + '-' + str(self.dj) + '-' + DAYS_OF_WEEK[self.day] + " " + self.time.strftime(format)
 
 class Choice(models.Model):
 	show = models.ForeignKey(Show)
