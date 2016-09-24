@@ -39,6 +39,9 @@ class Show(models.Model):
 		else: 
 			return self.show_name + '-' + str(self.dj) 
 
+	def __eq__(self, other):
+		return self.day == other.day and self.time == other.time 
+
 class Choice(models.Model):
 	show = models.ForeignKey(Show)
 	choice_num = models.IntegerField(default=0)
