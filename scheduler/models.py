@@ -34,7 +34,7 @@ class Show(models.Model):
 
 	def __str__(self):
 		format = '%I:%M %p'
-		if not (self.day and self.time == None):
+		if not (self.day == None and self.time == None):
 			return self.show_name + '-' + str(self.dj) + '-' + DAYS_OF_WEEK[self.day] + " " + self.time.strftime(format)
 		else: 
 			return self.show_name + '-' + str(self.dj) 
