@@ -24,8 +24,7 @@ def submit_show(request):
 	third_choice_time = request.POST.get('third_choice_time')
 	co_dj = request.POST.get('co_dj')
 	
-	nine_pm = datetime.strptime('09:00 PM', '%I:%M %p').time()
-	eleven_pm = datetime.strptime('11:00 PM', '%I:%M %p').time() 
+	noon = datetime.strptime('12:00 PM', '%I:%M %p').time()
 
 	if not first_choice_time == "":
 		first_choice_time = datetime.strptime(first_choice_time, '%I:%M %p').time()
