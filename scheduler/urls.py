@@ -8,4 +8,7 @@ urlpatterns = [
     url(r'^additional-times/(?P<dj_id>[0-9]+)/?$', views.additional_times),
     url(r'^submit-additional-times/(?P<dj_id>[0-9]+)/?$', views.submit_additional_times),
     url(r'^tentative-schedule/?$', views.tentative_schedule),
+    url(r'^login/?$', views.login_page),
+    url(r'^crediting/?$', views.crediting),
+    url(r'^submit-credits/?$', views.submit_credits),
 ]

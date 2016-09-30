@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from datetime import datetime 
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+
 
 from .models import BaseUser, Show, Choice
 
@@ -223,9 +226,40 @@ def tentative_schedule(request):
 				show_time = show.time 
 				shows_dict[i].append([str(show.dj), show_time.strftime('%I:%M %p')])
 
-	print shows_dict 
-
 	return render(request, 'tentative_schedule.html', {
 			'shows_dict': shows_dict 
-		})
+	})
 
+def login_page(request):
+	return render(request, 'login.html', {})
+
+@login_required
+def crediting(request):
+	username = request.POST['username']
+	password = request.POST['password']
+
+	user = authenticate(username=username, password=password)
+
+	if user is not None:
+		login(request, user)
+		return render(request, 'crediting.html', {})
+	else:
+		return render(request, 'invalid_login.html', {})
+
+@login_required
+def submit_credits(request):
+	first_name = request.POST.get('first_name')
+	last_name = request.POST.get('last_name')
+	credits = request.POST.get('credits')
+
+	dj = BaseUser.objects.filter(first_name=first_name, last_name=last_name).first()
+
+	if dj:
+		credits = int(credits)
+		dj.credits += credits 
+		dj.save()
+
+	else:
+		return render(request, 'not_in_database.html', {})
+
+	return render(request, 'thank_for_submissions.html', {})

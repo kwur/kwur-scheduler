@@ -40,7 +40,7 @@ form {
 	padding-left: 160px;
 }
 
-label, option, select, p, h3, a {
+label, option, select, p, h3, h1, a {
 	color: #F8F8FF;
 	font-family: 'Open Sans', sans-serif;
 }
