@@ -49,3 +49,13 @@ class Choice(models.Model):
 	def __str__(self):
 		format = '%I:%M %p'
 		return self.show.show_name + '-' + str(self.show.dj) + '-' + DAYS_OF_WEEK[self.day] + '-' + self.time.strftime(format)
+
+
+class Crediting(models.Model):
+	dj = models.ForeignKey(BaseUser)
+	credits = models.DecimalField(default=0, max_digits=5, decimal_places=2)
+	crediting_reason = models.TextField()
+	exec_email = models.EmailField(default='', blank=True, null=True)
+
+	def __str__(self):
+		return self.dj.first_name + ' ' + self.dj.last_name + ' ' + credits + ' from: ' + exec_email 

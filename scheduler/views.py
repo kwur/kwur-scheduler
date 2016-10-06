@@ -271,18 +271,19 @@ def submit_credits(request):
 	last_name = request.POST.get('last_name')
 	credits = request.POST.get('credits')
 	exec_email = request.POST.get('exec-email')
+	crediting_reason = request.POST.get('crediting-reason')
 
 	dj = BaseUser.objects.filter(first_name=first_name, last_name=last_name).first()
 
 	if dj:
 		credits = int(credits)
-		dj.credits += credits 
-		dj.save()
+		crediting = Crediting(dj=dj, first_name=first_name, last_name=last_name, credits=credits, crediting_reason=crediting_reason, exec_email=exec_email)
+		crediting.save()
 
 		if credits < 0:
 			send_mail(
                 'You\'ve been decredited', 
-                'Seems like you\'ve lost some credits! If you want to know why, send an email to ' + exec_email + '.', 
+                'Seems like you\'ve lost some credits! If you want to know why, send an email to ' + exec_email + '. Reason for decrediting: ' + crediting_reason + '.', 
                 'webmaster@kwur.com',
                 [dj.email],
                 fail_silently=False 
