@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 
 
-from .models import BaseUser, Show, Choice
+from .models import BaseUser, Show, Choice, Crediting
 
 def index(request):
 	return render(request, 'index.html', {})

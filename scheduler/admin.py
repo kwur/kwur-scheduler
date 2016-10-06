@@ -4,7 +4,7 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportMixin, ImportMixin, ExportActionModelAdmin
 
-from .models import BaseUser, Show, Choice
+from .models import BaseUser, Show, Choice, Crediting
 
 class BaseUserResource(resources.ModelResource):
 
@@ -32,6 +32,14 @@ class ChoiceAdmin(ImportExportMixin, admin.ModelAdmin):
     		model = Choice
     		fields = ('id', 'show', 'choice_num', 'day', 'time', 'not_available')
 
+class CreditingAdmin(ImportExportMixin, admin.ModelAdmin):
+
+	class Meta:
+		model = Crediting 
+		fields = ('id', 'dj', 'credits', 'crediting_reason', 'exec_email')
+		
+
 admin.site.register(BaseUser, BaseUserAdmin)
 admin.site.register(Show, ShowAdmin)
 admin.site.register(Choice, ChoiceAdmin)
+admin.site.register(Crediting)
