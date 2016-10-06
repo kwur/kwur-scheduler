@@ -277,7 +277,7 @@ def submit_credits(request):
 
 	if dj:
 		credits = int(credits)
-		crediting = Crediting(dj=dj, first_name=first_name, last_name=last_name, credits=credits, crediting_reason=crediting_reason, exec_email=exec_email)
+		crediting = Crediting(dj=dj, credits=credits, crediting_reason=crediting_reason, exec_email=exec_email)
 		crediting.save()
 
 		if credits < 0:

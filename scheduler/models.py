@@ -58,4 +58,4 @@ class Crediting(models.Model):
 	exec_email = models.EmailField(default='', blank=True, null=True)
 
 	def __str__(self):
-		return self.dj.first_name + ' ' + self.dj.last_name + ' ' + credits + ' from: ' + exec_email 
+		return str(self.dj) + ' ' + str(self.credits)
