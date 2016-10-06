@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from datetime import datetime 
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 
 
 from .models import BaseUser, Show, Choice
@@ -266,19 +267,27 @@ def crediting(request):
 		return render(request, 'invalid_login.html', {})
 
 def submit_credits(request):
-	if user.is_authenticated:	
-		first_name = request.POST.get('first_name')
-		last_name = request.POST.get('last_name')
-		credits = request.POST.get('credits')
+	first_name = request.POST.get('first_name')
+	last_name = request.POST.get('last_name')
+	credits = request.POST.get('credits')
+	exec_email = request.POST.get('exec-email')
 
-		dj = BaseUser.objects.filter(first_name=first_name, last_name=last_name).first()
+	dj = BaseUser.objects.filter(first_name=first_name, last_name=last_name).first()
 
-		if dj:
-			credits = int(credits)
-			dj.credits += credits 
-			dj.save()
+	if dj:
+		credits = int(credits)
+		dj.credits += credits 
+		dj.save()
 
-		else:
-			return render(request, 'not_in_database.html', {})
+		if credits < 0:
+			send_mail(
+                'You\'ve been decredited', 
+                'Seems like you\'ve lost some credits! If you want to know why, send an email to ' + exec_email + '.', 
+                'webmaster@kwur.com',
+                [dj.email],
+                fail_silently=False 
+            )
+	else:
+		return render(request, 'not_in_database.html', {})
 
-		return render(request, 'thank_for_submissions.html', {})
+	return render(request, 'thank_for_submissions.html', {})
