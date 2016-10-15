@@ -12,4 +12,6 @@ urlpatterns = [
     url(r'^crediting/?$', views.crediting),
     url(r'^show-names-schedule/?$', views.schedule_with_names),
     url(r'^submit-credits/?$', views.submit_credits),
+    url(r'^view-credits/?$', views.view_credits),
+    url(r'^finalize-creditings/?$', views.finalize_creditings),
 ]

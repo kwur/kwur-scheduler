@@ -4,6 +4,7 @@ from datetime import datetime
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+from decimal import Decimal
 
 
 from .models import BaseUser, Show, Choice, Crediting
@@ -292,3 +293,32 @@ def submit_credits(request):
 		return render(request, 'not_in_database.html', {})
 
 	return render(request, 'thank_for_submissions.html', {})
+
+def view_credits(request):
+	creditings = Crediting.objects.all()
+	return render(request, 'finalize_credits.html', {
+		'creditings': creditings
+	})
+
+def finalize_creditings(request):
+	accepted_creditings = request.POST.getlist('accept')
+	credits_value = request.POST.getlist('credits')
+	creditings = request.POST.getlist('crediting')
+	
+	if accepted_creditings:
+		import pdb; pdb.set_trace()
+		for i in range(len(accepted_creditings)):
+			dj = BaseUser.objects.get(id=int(accepted_creditings[i]))
+			if dj: 
+				dj.credits += Decimal(credits_value[i])
+				if dj.credits < 0:
+					dj.credits = 0 
+				dj.save()
+				# delete crediting 
+				crediting = Crediting.objects.get(id=int(creditings[i]))
+				crediting.delete()
+
+
+	return render(request, 'thank_for_submissions.html', {})
+
+

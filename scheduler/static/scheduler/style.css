@@ -40,7 +40,7 @@ form {
 	padding-left: 160px;
 }
 
-label, option, select, p, h3, h1, a {
+label, option, select, p, h3, h1, a, td {
 	color: #F8F8FF;
 	font-family: 'Open Sans', sans-serif;
 }
@@ -101,4 +101,12 @@ a:hover {
 .center {
 	text-align:center;
 	padding-bottom: 10px;
+}
+
+.checkbox {
+	margin-top: 0;
+}
+
+.table>tbody>tr>td {
+	border-top: none;
 }
