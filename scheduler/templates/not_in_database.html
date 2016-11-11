@@ -5,6 +5,6 @@
 	</head>
 	<div class="header">
 		<img src="{% static 'scheduler/kwur.png' %}">
-		<p class="thanks">Uh oh, it seems like you're not in the database! Please email webmaster@kwur.com for help.</p>
+		<p class="thanks">Uh oh, it seems like {% if for_crediting %} this dj {% else %} you're {% endif %} not in the database! Please email webmaster@kwur.com for help.</p>
 	</div>
 </html>

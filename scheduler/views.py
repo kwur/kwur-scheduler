@@ -290,7 +290,7 @@ def submit_credits(request):
                 fail_silently=False 
             )
 	else:
-		return render(request, 'not_in_database.html', {})
+		return render(request, 'not_in_database.html', {'for_crediting': True})
 
 	return render(request, 'thank_for_submissions.html', {})
 
