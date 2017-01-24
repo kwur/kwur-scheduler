@@ -5,6 +5,19 @@
 	</head>
 	<div class="header">
 		<img src="{% static 'scheduler/kwur.png' %}">
-		<p class="thanks">Uh oh, it seems like {% if for_crediting %} this dj {% else %} you're {% endif %} not in the database! Please email webmaster@kwur.com for help.</p>
+		{% if potential_results %}
+			<p class="thanks">Are any of these Djs you? If so, please go back and fill out the form again with the name listed! </p>
+			<ul style="padding:0;">
+				{% for result in potential_results %}
+					<li><p>{{result}}</p></li>
+				{% endfor %}
+			</ul>
+			<div style="padding: 30px;">
+				<a href="{% url 'index' %}">Back to Home Page </a>
+			</div>
+
+		{% else %}
+			<p class="thanks">Uh oh, it seems like {% if for_crediting %} this dj {% else %} you're {% endif %} not in the database! Please email webmaster@kwur.com for help.</p>
+		{% endif %}
 	</div>
 </html>

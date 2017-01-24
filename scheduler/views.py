@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from decimal import Decimal
-
+import pdb;
 
 from .models import BaseUser, Show, Choice, Crediting
 
@@ -44,7 +44,13 @@ def submit_show(request):
 	dj = BaseUser.objects.filter(first_name__iexact=first_name, last_name__iexact=last_name).first()
 
 	if not dj:
-		return render(request, 'not_in_database.html', {})
+		first_name_matches = BaseUser.objects.filter(first_name__iexact=first_name)
+		last_name_matches = BaseUser.objects.filter(last_name__iexact=last_name)
+		# merge the two together into unique query set
+		potential_results = first_name_matches | last_name_matches 
+		return render(request, 'not_in_database.html', {
+			'potential_results': potential_results
+		})
 
 	dj.email = email
 	dj.save()

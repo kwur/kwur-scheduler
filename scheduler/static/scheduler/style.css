@@ -40,7 +40,7 @@ form {
 	padding-left: 160px;
 }
 
-label, option, select, p, h3, h1, a, td {
+label, option, select, p, h3, h1, a, td, li {
 	color: #F8F8FF;
 	font-family: 'Open Sans', sans-serif;
 }
@@ -109,4 +109,8 @@ a:hover {
 
 .table>tbody>tr>td {
 	border-top: none;
+}
+
+#back {
+	padding: 30px;
 }
