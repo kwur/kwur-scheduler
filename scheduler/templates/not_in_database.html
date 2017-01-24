@@ -6,10 +6,10 @@
 	<div class="header">
 		<img src="{% static 'scheduler/kwur.png' %}">
 		{% if potential_results %}
-			<p class="thanks">Are any of these Djs you? If so, please go back and fill out the form again with the name listed! </p>
-			<ul style="padding:0;">
+			<p class="thanks">Are any of these Djs you? If so, please go back and fill out the form again with the name listed! If not, please email webmaster@kwur.com </p>
+			<ul class="circle" style="padding:0;">
 				{% for result in potential_results %}
-					<li><p>{{result}}</p></li>
+					<li><p style="font-size: 14px;">{{result}}</p></li>
 				{% endfor %}
 			</ul>
 			<div style="padding: 30px;">

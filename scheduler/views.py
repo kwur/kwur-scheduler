@@ -315,7 +315,7 @@ def finalize_creditings(request):
 		for i in range(len(accepted_creditings)):
 			dj = BaseUser.objects.get(id=int(accepted_creditings[i]))
 			if dj: 
-				dj.credits += Decimal(credits_value[i])
+				dj.credits += Decimal(num_credits[i])
 				if dj.credits < 0:
 					dj.credits = 0 
 				dj.save()
