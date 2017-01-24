@@ -308,9 +308,10 @@ def view_credits(request):
 
 def finalize_creditings(request):
 	accepted_creditings = request.POST.getlist('accept')
-	num_credits = request.POST.getlist('credits')
+	num_credits = request.POST.getlist('num_credits')
 	creditings = request.POST.getlist('crediting')
 	
+	pdb.set_trace();
 	if accepted_creditings:
 		for i in range(len(accepted_creditings)):
 			dj = BaseUser.objects.get(id=int(accepted_creditings[i]))
