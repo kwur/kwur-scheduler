@@ -48,8 +48,11 @@ class Choice(models.Model):
 
 	def __str__(self):
 		format = '%I:%M %p'
-		return self.show.show_name + '-' + unicode(self.show.dj) + '-' + DAYS_OF_WEEK[self.day] + '-' + self.time.strftime(format)
+		return self.show.show_name + '-' + str(self.show.dj) + '-' + DAYS_OF_WEEK[self.day] + '-' + self.time.strftime(format)
 
+	def __unicode__(self):
+		format = '%I:%M %p'
+		return self.show.show_name + u'-' + str(self.show.dj) + u'-' + DAYS_OF_WEEK[self.day] + '-' + self.time.strftime(format)
 
 class Crediting(models.Model):
 	dj = models.ForeignKey(BaseUser)
