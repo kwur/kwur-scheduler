@@ -143,7 +143,7 @@
 		    	var thirdChoiceTime = $('#third-choice-timepicker').val();
 		    	var thirdChoiceDay = $('#third_choice_day').val();
 		    	var thirdDay = parseInt(thirdChoiceDay);
-		    	if((thirdDay != 0 && thirdDay != 6) && thirdChoiceTime == "9:00 PM" || thirdChoiceTime == "11:00 PM") {
+		    	if((thirdDay != 0 && thirdDay != 6) && (thirdChoiceTime == "9:00 PM" || thirdChoiceTime == "11:00 PM")) {
 		    		alert("You cannot select this time! Please refer to the info on 2-hr slots above");
 		    	}
 		    });
