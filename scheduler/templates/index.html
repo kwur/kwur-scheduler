@@ -124,15 +124,17 @@
 		    $( "#first-choice-timepicker" ).change(function() {
 		    	var firstChoiceTime = $('#first-choice-timepicker').val();
 		    	var firstChoiceDay = $('#first_choice_day').val();
-		    	if((firstChoiceDay != 0 && firstChoiceDay != 6) && firstChoiceTime == "9:00 PM" || firstChoiceTime == "11:00 PM") {
-		    			alert("You cannot select this time! Please refer to the info on 2-hr slots above");
+		    	var day = parseInt(firstChoiceDay);
+		    	if((day != 0 && day != 6) && (firstChoiceTime == "9:00 PM" || firstChoiceTime == "11:00 PM")) {
+		    		alert("You cannot select this time! Please refer to the info on 2-hr slots above");
 		    	}
 		    });
 
 		    $('#second-choice-timepicker').change(function() {
 		    	var secondChoiceTime = $('#second-choice-timepicker').val();
 		    	var secondChoiceDay = $('#second_choice_day').val();
-		    	if((secondChoiceDay != 0 && secondChoiceDay != 6) && secondChoiceTime == "9:00 PM" || secondChoiceTime == "11:00 PM") {
+		    	var secondDay = parseInt(secondChoiceDay);
+		    	if((secondDay != 0 && secondDay != 6) && (secondChoiceTime == "9:00 PM" || secondChoiceTime == "11:00 PM")) {
 		    		alert("You cannot select this time! Please refer to the info on 2-hr slots above");
 		    	}
 		    });
@@ -140,7 +142,8 @@
 		    $('#third-choice-timepicker').change(function() {
 		    	var thirdChoiceTime = $('#third-choice-timepicker').val();
 		    	var thirdChoiceDay = $('#third_choice_day').val();
-		    	if((thirdChoiceDay != 0 && thirdChoiceDay != 6) && thirdChoiceTime == "9:00 PM" || thirdChoiceTime == "11:00 PM") {
+		    	var thirdDay = parseInt(thirdChoiceDay);
+		    	if((thirdDay != 0 && thirdDay != 6) && thirdChoiceTime == "9:00 PM" || thirdChoiceTime == "11:00 PM") {
 		    		alert("You cannot select this time! Please refer to the info on 2-hr slots above");
 		    	}
 		    });
