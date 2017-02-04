@@ -10,7 +10,7 @@ from decimal import Decimal
 from .models import BaseUser, Show, Choice, Crediting
 
 def index(request):
-	return render(request, 'index.html', {})
+	return render(request, 'cannot_schedule_anymore.html', {})
 
 def submit_show(request):
 	unknown_dj = BaseUser.objects.get(id=316)
