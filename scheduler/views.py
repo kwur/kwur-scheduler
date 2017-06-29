@@ -9,10 +9,27 @@ from decimal import Decimal
 
 from .models import BaseUser, Show, Choice, Crediting
 
+
 def index(request):
-	return render(request, 'cannot_schedule_anymore.html', {})
+	"""
+	Index will show either the form or, when the form will no longer be used, a 
+	statement saying that scheduling is closed.
+	"""
+
+	return render(request, 'index.html', {})
+
+	#uncomment this line and comment the above line once we cut off scheduling
+	#return render(request, 'cannot_schedule_anymore.html', {})
 
 def submit_show(request):
+	"""
+	Submits the information from the form into the database to give the user a tentative 
+	time for show. If first choice is taken, the scheduler will go to the second choice. 
+	If second is taken, to the third choice. If all choices are taken, the user will not 
+	have a showtime temporarily. This will be resolved once the script to bump/assign shows 
+	is ran. 
+	"""
+
 	unknown_dj = BaseUser.objects.get(id=316)
 
 	first_name = request.POST.get('first_name').strip()
@@ -29,8 +46,6 @@ def submit_show(request):
 	third_choice_time = request.POST.get('third_choice_time')
 	co_dj = request.POST.get('co_dj')
 	
-	noon = datetime.strptime('12:00 PM', '%I:%M %p').time()
-
 	if not first_choice_time == "":
 		first_choice_time = datetime.strptime(first_choice_time, '%I:%M %p').time()
 
@@ -40,14 +55,16 @@ def submit_show(request):
 	if not third_choice_time == "":
 		third_choice_time = datetime.strptime(third_choice_time, '%I:%M %p').time() 
 
-	# Rather than creating a new user, find existing baseuser and save their email
+	# Finds the DJ in the BaseUser database and saves their email
 	dj = BaseUser.objects.filter(first_name__iexact=first_name, last_name__iexact=last_name).first()
 
 	if not dj:
 		first_name_matches = BaseUser.objects.filter(first_name__iexact=first_name)
 		last_name_matches = BaseUser.objects.filter(last_name__iexact=last_name)
 		# merge the two together into unique query set
-		potential_results = first_name_matches | last_name_matches 
+		potential_results = first_name_matches | last_name_matches
+		# takes user to a page asking if any of the names given is theirs if their name cannot be found
+		#  in BaseUser database 
 		return render(request, 'not_in_database.html', {
 			'potential_results': potential_results
 		})
@@ -55,26 +72,31 @@ def submit_show(request):
 	dj.email = email
 	dj.save()
 
+
+	# Adds co-dj to show if co-dj exists 
 	if co_dj == '':
 		co_dj = None 
 	else:
-		co_dj_list = co_dj.lower().split()
-		fname = co_dj_list[0]
-		lname = co_dj_list[1]
+		co_dj_full_name = co_dj.lower().split()
+		fname = co_dj_full_name[0]
+		lname = co_dj_full_name[1]
 		co_dj = BaseUser.objects.filter(first_name__iexact=fname, last_name__iexact=lname).first()
 
 		# take into consideration if Co DJ doesn't exist 
 		if not co_dj:
-			# If any unknown_djs are in the database, check to see why this base user doesn't exist
+			# If any unknown_djs are in the database, check to see why this user doesn't exist
 			co_dj = unknown_dj 
 
+
+	# Create Show for dj if show doesn't exist
 	show = Show.objects.filter(dj=dj).first()
 
-	# If show doesn't exist, create show 
 	if not show: 
 		show = Show(show_name=show_name, dj=dj, co_dj=co_dj, genre=genre, tagline=tagline)
 		show.save()
 	
+
+	# Saves dj's choices in case they get bumped by someone with higher credits in the Credits database
 	first_choice = Choice(show=show, choice_num=0, day=first_choice_day, 
 						  time=first_choice_time)
 	first_choice.save()
@@ -98,19 +120,19 @@ def submit_show(request):
 
 	format = '%H:%M %p'
 
-	# This variable is used to check if a choice is the last choice given 
-	# by the dj or not
-
+	# This variable checks what choice we are on while looping through the choices given by the dj
 	i = 0
 
 	# Check if any of those choices are already taken 
 	for choice in choices:
 		i += 1
-		djs_with_time = Show.objects.filter(day=choice.day, time=choice.time).values_list('dj', flat=True)
-		dj_with_time = BaseUser.objects.filter(id__in=djs_with_time).order_by('credits').first()
+		djs_with_this_choice = Show.objects.filter(day=choice.day, time=choice.time).values_list('dj', flat=True)
+		dj_with_time = BaseUser.objects.filter(id__in=djs_with_this_choice).order_by('credits').first()
 
 		existing_show = Show.objects.filter(dj=dj_with_time).first()
 
+		# Compares the number of credits our current user submitting show has against the other user's
+		# which currently has this showtime. 
 		if existing_show and (existing_show.dj != dj): 
 			other_dj_credits = dj_with_time.credits
 
@@ -125,6 +147,7 @@ def submit_show(request):
 				existing_show.time = None
 				existing_show.save()
 
+				# Marks this show time as unavailable for anybody else who has this choice 
 				other_dj_choices = Choice.objects.filter(day=choice.day, time=choice.time)
 				other_dj_choices.update(not_available=True)
 
@@ -151,19 +174,26 @@ def submit_show(request):
 			other_dj_choices.update(not_available=True)
 
 			return render(request, 'thank_for_submissions.html', {})
+
 	return render(request, 'additional_times.html', {
 		'dj': dj,
 		'choices': choices,
 	})
 
 
-
 def additional_times(request, dj_id):
+	"""
+	Users are directed to this page once they receive an email stating that they were bumped. 
+	This page will ask the user for more show time choices.
+	"""
+
 	dj_id = int(dj_id)
 	dj = BaseUser.objects.filter(id=dj_id).first()
 
 	show = Show.objects.filter(dj=dj).first()
 
+	# This will be used to display the user's previous choices so that they won't resubmit the same 
+	# time slots
 	if show:
 		choices = Choice.objects.filter(show=show)
 	else:
@@ -175,6 +205,11 @@ def additional_times(request, dj_id):
 	})
 
 def submit_additional_times(request, dj_id):
+	"""
+	This function saves the additional times entered and assigns a time for the user if the time 
+	is available. 
+	"""
+
 	dj_id = int(dj_id)
 	dj = BaseUser.objects.filter(id=dj_id).first()
 
@@ -219,6 +254,10 @@ def submit_additional_times(request, dj_id):
 		return redirect('index')
 
 def tentative_schedule(request):
+	"""
+	This will display the tentative schedule for the users who have submitted their showtimes.
+	"""
+	
 	shows_dict = {
 		0: [], 
 		1: [],
