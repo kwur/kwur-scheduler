@@ -23,7 +23,7 @@ def run():
 
             if not choices:
                 print 'No available choices for this dj: ' + str(dj)
-                 send_mail(
+                send_mail(
                      'KWUR Scheduler Additional Times', 
                      'All of your choices have been taken! Please enter more here: ' + 
                      'kwur.herokuapp.com/additional-times/' + str(dj.id) + '.' + 
@@ -31,7 +31,7 @@ def run():
                      'webmaster@kwur.com',
                      [dj.email, 'webmaster@kwur.com'],
                      fail_silently=False 
-                 )
+                )
 
             i = 0
             for choice in choices:
@@ -88,7 +88,7 @@ def run():
                         if i == choices.count():
                             print 'Last choice, need more choices for this dj: ' + str(dj)
                             # Send email to user asking for more times
-                             send_mail(
+                            send_mail(
                                  'KWUR Scheduler Additional Times', 
                                  'All of your choices have been taken! Please enter more here: ' + 
                                  'kwur.herokuapp.com/additional-times/' + str(dj.id) + '.' + 
@@ -97,7 +97,7 @@ def run():
                                  'webmaster@kwur.com',
                                  [dj.email, 'webmaster@kwur.com'],
                                  fail_silently=False 
-                             )
+                            )
                 else:
                     print str(show) + ' show successfully saved with day and time'
                     show.day = choice.day
