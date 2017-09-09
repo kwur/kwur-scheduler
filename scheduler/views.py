@@ -30,7 +30,7 @@ def submit_show(request):
 	is ran. 
 	"""
 
-	unknown_dj = BaseUser.objects.get(id=743)
+	unknown_dj = BaseUser.objects.get(first_name__iexact='Unknown', last_name__iexact='Dj')
 
 	first_name = request.POST.get('first_name').strip()
 	last_name = request.POST.get('last_name').strip()

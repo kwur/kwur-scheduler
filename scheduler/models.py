@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from datetime import datetime 
+from django.utils.encoding import smart_unicode
 
 DAYS_OF_WEEK = {
 	0: 'Sunday', 
@@ -37,7 +38,7 @@ class Show(models.Model):
 		if not (self.day == None and self.time == None):
 			return self.show_name + '-' + str(self.dj) + '-' + DAYS_OF_WEEK[self.day] + " " + self.time.strftime(format)
 		else: 
-			return self.show_name + '-' + str(self.dj) 
+			return self.show_name + '-' + str(self.dj)
 
 class Choice(models.Model):
 	show = models.ForeignKey(Show)
