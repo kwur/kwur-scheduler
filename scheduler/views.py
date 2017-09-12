@@ -273,7 +273,7 @@ def tentative_schedule(request):
 				show_time = show.time
 				dj = str(show.dj)
 				if show.co_dj and str(show.co_dj) != "Unknown Dj":
-					dj += " " + show.co_dj
+					dj += " & " + str(show.co_dj)
 				shows_dict[i].append([dj, show_time.strftime('%I:%M %p')])
 
 	return render(request, 'tentative_schedule.html', {
