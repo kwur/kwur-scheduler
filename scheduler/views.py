@@ -270,8 +270,11 @@ def tentative_schedule(request):
 
 	for i in range(7):
 		for show in Show.objects.filter(day=i).order_by('time'):
-				show_time = show.time 
-				shows_dict[i].append([str(show.dj), show_time.strftime('%I:%M %p')])
+				show_time = show.time
+				dj = str(show.dj)
+				if show.co_dj and str(show.co_dj) != "Unknown Dj":
+					dj += " " + show.co_dj
+				shows_dict[i].append([dj, show_time.strftime('%I:%M %p')])
 
 	return render(request, 'tentative_schedule.html', {
 			'shows_dict': shows_dict 
