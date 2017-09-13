@@ -114,11 +114,11 @@
 			</form>
 		</div>
 		<script type="text/javascript">
-		    $('#first-choice-timepicker').timepicker();
+		    $('#first-choice-timepicker').timepicker({ minuteStep: 60, snapToStep: true });
 		    $('#first-choice-timepicker').val('');
-		    $('#second-choice-timepicker').timepicker();
+		    $('#second-choice-timepicker').timepicker({ minuteStep: 60, snapToStep: true });
 		    $('#second-choice-timepicker').val('');
-		    $('#third-choice-timepicker').timepicker();
+		    $('#third-choice-timepicker').timepicker({ minuteStep: 60, snapToStep: true });
 		    $('#third-choice-timepicker').val('');
 
 		    $( "#first-choice-timepicker" ).change(function() {
