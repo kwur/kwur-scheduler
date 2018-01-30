@@ -113,5 +113,6 @@ def run():
 
 
     except Exception, e:
-        print "A problem arose"
+        print "A problem arose:"
+        print str(e)
         raise e
