@@ -137,7 +137,7 @@ STATICFILES_DIRS = (
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'webmaster@kwur.com'
-EMAIL_HOST_PASSWORD = 'kwurtl3e@t!ngch33se'
+EMAIL_HOST_PASSWORD = 'saltychocolateballs'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
