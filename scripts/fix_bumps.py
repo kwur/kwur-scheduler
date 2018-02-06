@@ -92,8 +92,7 @@ def run():
                             #      'KWUR Scheduler Additional Times', 
                             #      'All of your choices have been taken! Please enter more here: ' + 
                             #      'kwur.herokuapp.com/additional-times/' + str(dj.id) + '.' + 
-                            #      ' Here\'s the link to the tentative schedule we have so far: kwur.herokuapp.com/tentative-schedule and a link ' + 
-                            #      'to see the number of credits you have: https://docs.google.com/spreadsheets/d/1s2gwlB7PbMhHb2zL2Vfxy6uQQBEieKEeUgNqgDS5vUQ/edit#gid=782452583',
+                            #      ' Here\'s the link to the tentative schedule we have so far: kwur.herokuapp.com/tentative-schedule',
                             #      'webmaster@kwur.com',
                             #      [dj.email, 'webmaster@kwur.com'],
                             #      fail_silently=False 
