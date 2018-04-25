@@ -23,15 +23,15 @@ def run():
 
             if not choices:
                 print 'No available choices for this dj: ' + str(dj)
-                # send_mail(
-                #      'KWUR Scheduler Additional Times', 
-                #      'All of your choices have been taken! Please enter more here: ' + 
-                #      'kwur.herokuapp.com/additional-times/' + str(dj.id) + '.' + 
-                #      ' Here\'s the link to the tentative schedule we have so far: kwur.herokuapp.com/tentative-schedule',
-                #      'webmaster@kwur.com',
-                #      [dj.email, 'webmaster@kwur.com'],
-                #      fail_silently=False 
-                # )
+                send_mail(
+                     'KWUR Scheduler Additional Times', 
+                     'All of your choices have been taken! Please enter more here: ' + 
+                     'kwur.herokuapp.com/additional-times/' + str(dj.id) + '.' + 
+                     ' Here\'s the link to the tentative schedule we have so far: kwur.herokuapp.com/tentative-schedule',
+                     'webmaster@kwur.com',
+                     [dj.email, 'webmaster@kwur.com'],
+                     fail_silently=False 
+                )
 
             i = 0
             for choice in choices:
