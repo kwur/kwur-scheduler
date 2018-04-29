@@ -21,7 +21,7 @@ def index(request):
 	#uncomment this line and comment the above line once we cut off scheduling
 	#return render(request, 'cannot_schedule_anymore.html', {})
 
-def check_times(request, day, time):
+def check_time(request, day, time):
 
 	if ((day != 0 and day != 6) and time == "9:00 PM"):
 		return render(request, 'index.html', {})
