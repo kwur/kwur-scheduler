@@ -23,7 +23,7 @@ def index(request):
 
 def check_times(request, day, time):
 
-	if((day != 0 && day != 6) && time == "9:00 PM"):
+	if ((day != 0 and day != 6) and time == "9:00 PM"):
 		return render(request, 'index.html', {})
 
 
