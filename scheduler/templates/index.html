@@ -24,7 +24,7 @@
 			<img src="{% static 'scheduler/kwur.png' %}" class="pagination-centered">
 		</div>
 		<div class="section">
-			<p class="center">Welcome to the KWUR Scheduler! Some things to remember: all shows are an hour long except for shows from 8-10PM and 10-midnight Monday-Friday. If you have a co-dj, the dj with the higher number of credits should fill out this form. For those of you involved in two shows, please submit one show and then contact me at webmaster@kwur.com. </p>
+			<p class="center">Welcome to the KWUR Scheduler! Some things to remember: all shows are an hour long, on the hour, except for shows from 8-10PM Monday-Friday. If you have a co-dj, the dj with the higher number of credits should fill out this form. For those of you involved in two shows, please submit one show and then contact me at webmaster@kwur.com. </p>
 			<form data-toggle="validator" action="submit-show/" method="post" role="form">
 				{% csrf_token %}
 				<div class="form-group">
@@ -121,33 +121,6 @@
 		    $('#second-choice-timepicker').val('');
 		    $('#third-choice-timepicker').timepicker({ minuteStep: 60, snapToStep: true });
 		    $('#third-choice-timepicker').val('');
-
-		    $( "#first-choice-timepicker" ).change(function() {
-		    	var firstChoiceTime = $('#first-choice-timepicker').val();
-		    	var firstChoiceDay = $('#first_choice_day').val();
-		    	var day = parseInt(firstChoiceDay);
-		    	if((day != 0 && day != 6) && (firstChoiceTime == "9:00 PM" || firstChoiceTime == "11:00 PM")) {
-		    		alert("You cannot select this time! Please refer to the info on 2-hr slots above");
-		    	}
-		    });
-
-		    $('#second-choice-timepicker').change(function() {
-		    	var secondChoiceTime = $('#second-choice-timepicker').val();
-		    	var secondChoiceDay = $('#second_choice_day').val();
-		    	var secondDay = parseInt(secondChoiceDay);
-		    	if((secondDay != 0 && secondDay != 6) && (secondChoiceTime == "9:00 PM" || secondChoiceTime == "11:00 PM")) {
-		    		alert("You cannot select this time! Please refer to the info on 2-hr slots above");
-		    	}
-		    });
-
-		    $('#third-choice-timepicker').change(function() {
-		    	var thirdChoiceTime = $('#third-choice-timepicker').val();
-		    	var thirdChoiceDay = $('#third_choice_day').val();
-		    	var thirdDay = parseInt(thirdChoiceDay);
-		    	if((thirdDay != 0 && thirdDay != 6) && (thirdChoiceTime == "9:00 PM" || thirdChoiceTime == "11:00 PM")) {
-		    		alert("You cannot select this time! Please refer to the info on 2-hr slots above");
-		    	}
-		    });
 
 		</script>
 	</body>

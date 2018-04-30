@@ -21,12 +21,14 @@ def index(request):
 	#uncomment this line and comment the above line once we cut off scheduling
 	#return render(request, 'cannot_schedule_anymore.html', {})
 
-# def check_time(request, day, time):
+def time_is_valid(request, day, time):
+	"""
+	Checks if the user submitted a valid time
+	"""
 
-	
-# 	if ((day != 0 and day != 6) and time == "9:00 PM"):
-# 		return render(request, 'index.html', {})
-
+	if ((day != '0' and day != '6') and time.hour == 21) or time.minute != 0:
+		return False
+	return True
 
 def submit_show(request):
 	"""
@@ -55,15 +57,19 @@ def submit_show(request):
 	
 	if not first_choice_time == "":
 		first_choice_time = datetime.strptime(first_choice_time, '%I:%M %p').time()
-		# check_time(request, first_choice_day, first_choice_time)
+		if not time_is_valid(request, first_choice_day, first_choice_time):
+			return render(request, 'invalid_times.html', {})
+
 
 	if not second_choice_time == "":
 		second_choice_time = datetime.strptime(second_choice_time, '%I:%M %p').time()
-		# check_time(request, second_choice_day, second_choice_time)
+		if not time_is_valid(request, second_choice_day, second_choice_time):
+			return render(request, 'invalid_times.html', {})
 
 	if not third_choice_time == "":
 		third_choice_time = datetime.strptime(third_choice_time, '%I:%M %p').time()
-		# check_time(request, third_choice_day, third_choice_time)
+		if not time_is_valid(request, third_choice_day, third_choice_time):
+			return render(request, 'invalid_times.html', {})
 
 	# Finds the DJ in the BaseUser database and saves their email
 	dj = BaseUser.objects.filter(first_name__iexact=first_name, last_name__iexact=last_name).first()
