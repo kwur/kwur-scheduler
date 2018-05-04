@@ -23,12 +23,12 @@ def index(request):
 
 def time_is_valid(request, day, time):
 	"""
-	Checks if the user submitted a valid time
+	Checks if the user submitted a valid time. Make sure that the logic statements here 
+	align with current KWUR show policy (may include blacking out times for George's show).
 	"""
 
-	if ((day != '0' and day != '6') and time.hour == 21) or time.minute != 0:
-		return False
-	return True
+	return not (((day != '0' and day != '6') and time.hour == 21) or time.minute != 0)
+
 
 def submit_show(request):
 	"""
