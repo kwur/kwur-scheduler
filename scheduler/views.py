@@ -27,7 +27,14 @@ def time_is_valid(request, day, time):
 	align with current KWUR show policy (may include blacking out times for George's show).
 	"""
 
-	return not (((day != '0' and day != '6') and time.hour == 21) or time.minute != 0)
+	if ((day != '0' and day != '6') and time.hour == 21) or time.minute != 0:
+		return False
+
+	# George's time
+	if day == '6' and time.hour >= 9 and time.hour < 12:
+		return False
+
+	return True
 
 
 def submit_show(request):
