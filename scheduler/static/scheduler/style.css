@@ -13,10 +13,6 @@ h1, h3 {
 	text-align: center;
 }
 
-h3 {
-	color: orangered;
-}
-
 form {
 	padding-bottom: 40px;
 	text-align: center;
@@ -47,6 +43,10 @@ form {
 label, option, select, p, h3, h1, a, td, li {
 	color: #F8F8FF;
 	font-family: 'Open Sans', sans-serif;
+}
+
+h3 {
+	color: orangered;
 }
 
 .thanks {
