@@ -9,8 +9,12 @@ body {
 	padding-bottom: 50px;
 }
 
-h1 {
+h1, h3 {
 	text-align: center;
+}
+
+h3 {
+	color: orangered;
 }
 
 form {
