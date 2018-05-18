@@ -21,7 +21,7 @@ def index(request):
 	#uncomment this line and comment the above line once we cut off scheduling
 	#return render(request, 'cannot_schedule_anymore.html', {})
 
-def time_is_valid(request, day, time):
+def time_is_valid(request, day, time, name):
 	"""
 	Checks if the user submitted a valid time. Make sure that the logic statements here 
 	align with current KWUR show policy (may include blacking out times for George's show).
@@ -31,7 +31,7 @@ def time_is_valid(request, day, time):
 		return False
 
 	# George's time
-	if day == '6' and time.hour >= 9 and time.hour < 12:
+	if name != "George Yeh" and day == '6' and time.hour >= 9 and time.hour < 12:
 		return False
 
 	return True
@@ -61,21 +61,23 @@ def submit_show(request):
 	third_choice_day = request.POST.get('third_choice_day')
 	third_choice_time = request.POST.get('third_choice_time')
 	co_dj = request.POST.get('co_dj')
+
+	full_name = first_name + " " + last_name
 	
 	if not first_choice_time == "":
 		first_choice_time = datetime.strptime(first_choice_time, '%I:%M %p').time()
-		if not time_is_valid(request, first_choice_day, first_choice_time):
+		if not time_is_valid(request, first_choice_day, first_choice_time, full_name):
 			return render(request, 'invalid_times.html', {})
 
 
 	if not second_choice_time == "":
 		second_choice_time = datetime.strptime(second_choice_time, '%I:%M %p').time()
-		if not time_is_valid(request, second_choice_day, second_choice_time):
+		if not time_is_valid(request, second_choice_day, second_choice_time, full_name):
 			return render(request, 'invalid_times.html', {})
 
 	if not third_choice_time == "":
 		third_choice_time = datetime.strptime(third_choice_time, '%I:%M %p').time()
-		if not time_is_valid(request, third_choice_day, third_choice_time):
+		if not time_is_valid(request, third_choice_day, third_choice_time, full_name):
 			return render(request, 'invalid_times.html', {})
 
 	# Finds the DJ in the BaseUser database and saves their email
