@@ -17,12 +17,12 @@ def run():
         for show in shows_without_times:
 
             dj = show.dj 
-            print "Show: " + str(show) + " Dj: " + str(dj)
+            print "Show: " + show.encode('utf-8') + " Dj: " + dj.encode('utf-8')
 
             choices = Choice.objects.filter(show=show).exclude(not_available=True)
 
             if not choices:
-                print 'No available choices for this dj: ' + str(dj)
+                print 'No available choices for this dj: ' + dj.encode('utf-8')
                 send_mail(
                      'KWUR Scheduler Additional Times', 
                      'All of your choices have been taken! Please enter more here: ' + 
@@ -49,7 +49,7 @@ def run():
                         show.time = choice.time 
                         show.save()
 
-                        print 'Other Dj got bumped (A): ' + str(dj_with_time)
+                        print 'Other Dj got bumped (A): ' + dj_with_time.encode('utf-8')
                         existing_show.day = None 
                         existing_show.time = None 
                         existing_show.save()
@@ -70,7 +70,7 @@ def run():
                             show.time = choice.time 
                             show.save()
 
-                            print 'Other Dj got bumped (B): ' + str(dj_with_time)
+                            print 'Other Dj got bumped (B): ' + dj_with_time.encode('utf-8')
                             existing_show.day = None 
                             existing_show.time = None
                             existing_show.save()
@@ -86,7 +86,7 @@ def run():
                         choice.save()
 
                         if i == choices.count():
-                            print 'Last choice, need more choices for this dj: ' + str(dj)
+                            print 'Last choice, need more choices for this dj: ' + dj.encode('utf-8')
                             # Send email to user asking for more times
                             send_mail(
                                  'KWUR Scheduler Additional Times', 
@@ -98,7 +98,7 @@ def run():
                                  fail_silently=False 
                             )
                 else:
-                    print str(show) + ' show successfully saved with day and time'
+                    print show.encode('utf-8') + ' show successfully saved with day and time'
                     show.day = choice.day
                     show.time = choice.time
                     show.save()
