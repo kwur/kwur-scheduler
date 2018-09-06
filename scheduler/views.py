@@ -255,6 +255,24 @@ def submit_additional_times(request, dj_id):
 		third_choice_day = request.POST.get('choice_three_day')
 		third_choice_time = request.POST.get('choice_three_time')
 
+		if not first_choice_time == "":
+			first_choice_time = datetime.strptime(first_choice_time, '%I:%M %p').time()
+			if not time_is_valid(request, first_choice_day, first_choice_time, "not George"):
+				return render(request, 'invalid_times.html', {})
+
+
+		if not second_choice_time == "":
+			second_choice_time = datetime.strptime(second_choice_time, '%I:%M %p').time()
+			if not time_is_valid(request, second_choice_day, second_choice_time, "not George"):
+				return render(request, 'invalid_times.html', {})
+
+		if not third_choice_time == "":
+			third_choice_time = datetime.strptime(third_choice_time, '%I:%M %p').time()
+			if not time_is_valid(request, third_choice_day, third_choice_time, "not George"):
+				return render(request, 'invalid_times.html', {})
+
+
+
 		if first_choice_day and first_choice_time: 
 			first_choice_time = datetime.strptime(first_choice_time, '%I:%M %p').time()
 			first_choice = Choice(show=show, choice_num=(choice_num+1), day=first_choice_day, 
