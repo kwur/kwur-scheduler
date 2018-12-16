@@ -23,7 +23,7 @@
 		<form data-toggle="validator" action="/finalize-creditings" method="post" role="form">
 				{% csrf_token %}
 					<table class="table">
-						<button id='select-all'>Select All</button>
+						Select All: <input type="checkbox" id='select-all'>
 						{% for crediting in creditings %}
 						<input type="hidden" name="num_credits" value="{{crediting.credits}}">
 						<input type="hidden" name="crediting" value="{{crediting.id}}">
@@ -52,7 +52,7 @@
 	<script>
 		$(document).ready(function(){
 			$('#select-all').on('click', function() {
-				$('.checkbox-input').prop('checked', true);
+				$('.checkbox-input').prop('checked', this.checked);
 			});
 		});
 	</script>
