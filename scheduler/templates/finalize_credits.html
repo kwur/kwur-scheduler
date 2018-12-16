@@ -20,10 +20,10 @@
 		<img src="{% static 'scheduler/kwur.png' %}" class="pagination-centered">
 	</div>
 	<div class="section center">
+		<div style="color:white">Select All: <input type="checkbox" id='select-all'></div>
 		<form data-toggle="validator" action="/finalize-creditings" method="post" role="form">
 				{% csrf_token %}
 					<table class="table">
-						Select All: <input type="checkbox" id='select-all'>
 						{% for crediting in creditings %}
 						<input type="hidden" name="num_credits" value="{{crediting.credits}}">
 						<input type="hidden" name="crediting" value="{{crediting.id}}">
