@@ -17,7 +17,7 @@ DAYS_OF_WEEK = {
 class BaseUser(models.Model):
 	first_name = models.CharField(max_length=25)
 	last_name = models.CharField(max_length=30)
-	credits = models.DecimalField(default=0, max_digits=5, decimal_places=2)
+	credits = models.DecimalField(default=0, max_digits=6, decimal_places=2)
 	email = models.EmailField(default='', blank=True, null=True)
 
 	def __str__(self):
