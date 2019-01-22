@@ -274,19 +274,16 @@ def submit_additional_times(request, dj_id):
 
 
 		if first_choice_day and first_choice_time: 
-			first_choice_time = datetime.strptime(first_choice_time, '%I:%M %p').time()
 			first_choice = Choice(show=show, choice_num=(choice_num+1), day=first_choice_day, 
 								  time=first_choice_time)
 			first_choice.save()
 
 		if second_choice_day and second_choice_time:
-			second_choice_time = datetime.strptime(second_choice_time, '%I:%M %p').time()
 			second_choice = Choice(show=show, choice_num=(choice_num+2), day=second_choice_day,
 								   time=second_choice_time)
 			second_choice.save()
 
 		if third_choice_day and third_choice_time:
-			third_choice_time = datetime.strptime(third_choice_time, '%I:%M %p').time() 
 			third_choice = Choice(show=show, choice_num=(choice_num+3), day=third_choice_day,
 								  time=third_choice_time)
 			third_choice.save()
