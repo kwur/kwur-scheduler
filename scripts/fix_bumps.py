@@ -23,15 +23,15 @@ def run():
 
             if not choices:
                 print 'No available choices for this dj: ' + unicode(dj)
-                send_mail(
-                     'KWUR Scheduler Additional Times', 
-                     'All of your choices have been taken! Please enter more here: ' + 
-                     'kwur.herokuapp.com/additional-times/' + unicode(dj.id) + '.' + 
-                     ' Here\'s the link to the tentative schedule we have so far: kwur.herokuapp.com/tentative-schedule',
-                     'webmaster@kwur.com',
-                     [dj.email, 'webmaster@kwur.com'],
-                     fail_silently=False 
-                )
+                # send_mail(
+                #      'KWUR Scheduler Additional Times', 
+                #      'All of your choices have been taken! Please enter more here: ' + 
+                #      'kwur.herokuapp.com/additional-times/' + unicode(dj.id) + '.' + 
+                #      ' Here\'s the link to the tentative schedule we have so far: kwur.herokuapp.com/tentative-schedule',
+                #      'webmaster@kwur.com',
+                #      [dj.email, 'webmaster@kwur.com'],
+                #      fail_silently=False 
+                # )
 
             i = 0
             for choice in choices:
@@ -88,15 +88,15 @@ def run():
                         if i == choices.count():
                             print 'Last choice, need more choices for this dj: ' + unicode(dj)
                             # Send email to user asking for more times
-                            send_mail(
-                                 'KWUR Scheduler Additional Times', 
-                                 'All of your choices have been taken! Please enter more here: ' + 
-                                 'kwur.herokuapp.com/additional-times/' + unicode(dj.id) + '.' + 
-                                 ' Here\'s the link to the tentative schedule we have so far: kwur.herokuapp.com/tentative-schedule',
-                                 'webmaster@kwur.com',
-                                 [dj.email, 'webmaster@kwur.com'],
-                                 fail_silently=False 
-                            )
+                            # send_mail(
+                            #      'KWUR Scheduler Additional Times', 
+                            #      'All of your choices have been taken! Please enter more here: ' + 
+                            #      'kwur.herokuapp.com/additional-times/' + unicode(dj.id) + '.' + 
+                            #      ' Here\'s the link to the tentative schedule we have so far: kwur.herokuapp.com/tentative-schedule',
+                            #      'webmaster@kwur.com',
+                            #      [dj.email, 'webmaster@kwur.com'],
+                            #      fail_silently=False 
+                            # )
                 else:
                     print unicode(show) + ' show successfully saved with day and time'
                     show.day = choice.day
