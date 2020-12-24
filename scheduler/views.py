@@ -16,7 +16,7 @@ def index(request):
 	statement saying that scheduling is closed.
 	"""
 
-	# return render(request, 'index.html', {})÷
+	# return render(request, 'index.html', {})
 
 	#uncomment this line and comment the above line once we cut off scheduling
 	return render(request, 'cannot_schedule_anymore.html', {})
