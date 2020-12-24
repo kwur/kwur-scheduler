@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+
 
 from django.db import models
 from datetime import datetime 
@@ -44,10 +44,10 @@ class Show(models.Model):
 		format = '%I:%M %p'
 		if not (self.day == None and self.time == None):
 			temp = self.show_name + '-' + str(self.dj) + '-' + DAYS_OF_WEEK[self.day] + " " + self.time.strftime(format)
-			return u'%s' % (temp)
+			return '%s' % (temp)
 		else: 
 			temp = self.show_name + '-' + str(self.dj)
-			return u'%s' % (temp)
+			return '%s' % (temp)
 
 class Choice(models.Model):
 	show = models.ForeignKey(Show)
@@ -63,7 +63,7 @@ class Choice(models.Model):
 	def __unicode__(self):
 		format = '%I:%M %p'
 		temp = self.show.show_name + '-' + str(self.show.dj) + '-' + DAYS_OF_WEEK[self.day] + '-' + self.time.strftime(format)
-		return u'%s' % (temp)
+		return '%s' % (temp)
 
 class Crediting(models.Model):
 	dj = models.ForeignKey(BaseUser)
