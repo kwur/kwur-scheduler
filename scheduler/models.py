@@ -2,7 +2,7 @@
 
 from django.db import models
 from datetime import datetime 
-from django.utils.encoding import smart_unicode
+from django.utils.encoding import smart_text
 
 DAYS_OF_WEEK = {
 	0: 'Sunday', 
