@@ -17,16 +17,16 @@ def run():
         for show in shows_without_times:
 
             dj = show.dj 
-            print "Show: " + unicode(show) + " Dj: " + unicode(dj)
+            print("Show: " + str(show) + " Dj: " + str(dj))
 
             choices = Choice.objects.filter(show=show).exclude(not_available=True)
 
             if not choices:
-                print 'No available choices for this dj: ' + unicode(dj)
+                print('No available choices for this dj: ' + str(dj))
                 send_mail(
                      'KWUR Scheduler Additional Times', 
                      'All of your choices have been taken! Please enter more here: ' + 
-                     'kwur.herokuapp.com/additional-times/' + unicode(dj.id) + '.' + 
+                     'kwur.herokuapp.com/additional-times/' + str(dj.id) + '.' + 
                      ' Here\'s the link to the tentative schedule we have so far: kwur.herokuapp.com/tentative-schedule',
                      'webmaster@kwur.com',
                      [dj.email, 'webmaster@kwur.com'],
@@ -49,7 +49,7 @@ def run():
                         show.time = choice.time 
                         show.save()
 
-                        print 'Other Dj got bumped (A): ' + unicode(dj_with_time)
+                        print('Other Dj got bumped (A): ' + str(dj_with_time))
                         existing_show.day = None 
                         existing_show.time = None 
                         existing_show.save()
@@ -70,7 +70,7 @@ def run():
                             show.time = choice.time 
                             show.save()
 
-                            print 'Other Dj got bumped (B): ' + unicode(dj_with_time)
+                            print('Other Dj got bumped (B): ' + str(dj_with_time))
                             existing_show.day = None 
                             existing_show.time = None
                             existing_show.save()
@@ -86,19 +86,19 @@ def run():
                         choice.save()
 
                         if i == choices.count():
-                            print 'Last choice, need more choices for this dj: ' + unicode(dj)
+                            print('Last choice, need more choices for this dj: ' + str(dj))
                             # Send email to user asking for more times
                             send_mail(
                                  'KWUR Scheduler Additional Times', 
                                  'All of your choices have been taken! Please enter more here: ' + 
-                                 'kwur.herokuapp.com/additional-times/' + unicode(dj.id) + '.' + 
+                                 'kwur.herokuapp.com/additional-times/' + str(dj.id) + '.' + 
                                  ' Here\'s the link to the tentative schedule we have so far: kwur.herokuapp.com/tentative-schedule',
                                  'webmaster@kwur.com',
                                  [dj.email, 'webmaster@kwur.com'],
                                  fail_silently=False 
                             )
                 else:
-                    print unicode(show) + ' show successfully saved with day and time'
+                    print(str(show) + ' show successfully saved with day and time')
                     show.day = choice.day
                     show.time = choice.time
                     show.save()
@@ -111,7 +111,7 @@ def run():
                     break
 
 
-    except Exception, e:
-        print "A problem arose:"
-        print unicode(e)
+    except Exception as e:
+        print("A problem arose:")
+        print(str(e))
         raise e
