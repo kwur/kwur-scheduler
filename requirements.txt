@@ -1,7 +1,7 @@
 diff-match-patch==20121119
 dj-database-url==0.4.1
 Django==3.2
-django-extensions==1.7.4
+django-extensions==3.2.3
 django-import-export==0.5.0
 gunicorn==19.6.0
 psycopg2-binary==2.9.9
