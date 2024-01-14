@@ -119,7 +119,7 @@ def submit_show(request):
 	if not show:
 		show = Show(show_name=show_name, dj=dj, co_dj=co_dj, genre=genre, tagline=tagline)
 		show.save()
-
+ 
 
 	# Saves dj's choices in case they get bumped by someone with higher credits in the Credits database
 	first_choice = Choice(show=show, choice_num=0, day=first_choice_day,
