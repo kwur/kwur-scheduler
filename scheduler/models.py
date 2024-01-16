@@ -25,8 +25,8 @@ class BaseUser(models.Model):
 
 class Show(models.Model):
 	show_name = models.CharField(max_length=200)
-	dj = models.ForeignKey(BaseUser)
-	co_dj = models.ForeignKey(BaseUser, null=True, blank=True, related_name='co_dj')
+	dj = models.ForeignKey(BaseUser, on_delete=models.CASCADE)
+	co_dj = models.ForeignKey(BaseUser, null=True, blank=True, related_name='co_dj', on_delete=models.CASCADE)
 	genre = models.CharField(max_length=50)
 	tagline = models.TextField()
 	day = models.IntegerField(blank=True, null=True)
@@ -50,7 +50,7 @@ class Show(models.Model):
 			return '%s' % (temp)
 
 class Choice(models.Model):
-	show = models.ForeignKey(Show)
+	show = models.ForeignKey(Show, on_delete=models.CASCADE)
 	choice_num = models.IntegerField(default=0)
 	day = models.IntegerField(default=0)
 	time = models.TimeField()
@@ -66,7 +66,7 @@ class Choice(models.Model):
 		return '%s' % (temp)
 
 class Crediting(models.Model):
-	dj = models.ForeignKey(BaseUser)
+	dj = models.ForeignKey(BaseUser, on_delete=models.CASCADE)
 	credits = models.DecimalField(default=0, max_digits=5, decimal_places=2)
 	crediting_reason = models.TextField()
 	exec_email = models.EmailField(default='', blank=True, null=True)
